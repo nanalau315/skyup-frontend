@@ -23,8 +23,8 @@ function UserPostCard({post, currentUser, deletePost}){
             <h4>{userPost.honks.length}</h4>
             <h4>{userPost.content}</h4>
             <UserCommentList
-                postId={post.id} 
-                comments={post.comments}
+                postId={userPost.id} 
+                comments={userPost.comments}
                 currentUser={currentUser}
                 />
             {userPost.user_id === currentUser.id ?

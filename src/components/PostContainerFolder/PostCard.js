@@ -1,20 +1,44 @@
-import React from 'react';
-import PostCommentList from './PostCommentList'
+//Need to add Post Img!
 
-function PostCard({post, currentUser}){
+import React, {useState} from 'react';
+import PostCommentList from './PostCommentList'
+import PostEditForm from './PostEditForm';
+
+function PostCard({post, currentUser, deletePost}){
+    const [postCard, setPostCard] = useState(post)
+    const [showEditPostForm, setShowEditPostForm] = useState(false)
+
+    function editPost(updatedPost){
+        setPostCard(updatedPost)
+    }
 
     return(
         <div>
-            <h3>Post Card {post.id}</h3>
+            <h3>Post Card {postCard.id}</h3>
             {/* author's Img */}
-            <h4>{post.author}</h4>
-            <h4>{post.honks.length}</h4>
-            <h4>{post.content}</h4>
+            <h4>{postCard.author}</h4>
+            {/* Post Img!! */}
+            <h4>{postCard.honks.length}</h4>
+            <h4>{postCard.content}</h4>
             <PostCommentList
-                postId={post.id}
-                comments={post.comments}
+                postId={postCard.id}
+                comments={postCard.comments}
                 currentUser={currentUser}
             />
+            {postCard.user_id === currentUser.id ?
+                <button onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>Edit Post Icon</button>
+                : null}
+                {showEditPostForm ?
+                    <div>
+                        <PostEditForm 
+                            post={postCard} 
+                            editPost={editPost}
+                            currentUser={currentUser}
+                            deletePost={deletePost}
+                        />
+                    </div> 
+                : null
+                }
 
         </div>
     )
