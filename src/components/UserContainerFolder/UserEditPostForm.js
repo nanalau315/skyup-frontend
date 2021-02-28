@@ -1,9 +1,8 @@
 import React,{useState} from 'react';
 
-function UserEditPostForm({currentUser, post, editPost}){
+function UserEditPostForm({currentUser, post, editPost, deletePost}){
     const API = "http://localhost:3001/"
     const [newContent, setNewContent] = useState(post.content)
-    // console.log(post)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -18,12 +17,21 @@ function UserEditPostForm({currentUser, post, editPost}){
             })
     }
 
+    function handleDelete(){
+        fetch(`${API}posts/${post.id}`, {
+            method: "DELETE",
+        })
+        deletePost(post.id)
+    }
+
     return(
         <div className="usereditpostform-div">
-            <form onSubmit={handleSubmit}>
-                <input className="content-input" type="text" name="content" value={newContent} onChange={(e)=>setNewContent(e.target.value)} placeholder={"Post Content as " +  currentUser.username} required/>
-                <button type="submit">Edit Post</button>
-            </form>
+            <h3>User Edit Post Form</h3>
+                <form onSubmit={handleSubmit}>
+                    <input className="content-input" type="text" name="content" value={newContent} onChange={(e)=>setNewContent(e.target.value)} placeholder={"Edit Post Content as " +  currentUser.username} required/>
+                    <button type="submit">Edit Post</button>
+                </form>
+            <button onClick={handleDelete}>Delete Post Icon!</button>
         </div>
     )
 }

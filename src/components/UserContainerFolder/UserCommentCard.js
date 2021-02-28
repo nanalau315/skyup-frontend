@@ -1,21 +1,32 @@
-import React from 'react';
+import React,{useState} from 'react';
 import UserEditCommentForm from './UserEditCommentForm';
 
 function UserCommentCard({comment, currentUser, updateComment, deleteComment}){
-    // console.log(comment)
-    // console.log(comment.comment)
-    // console.log(comment.author)
+    const [showEditCommentForm, setShowEditCommentForm] = useState(false)
+    
     return(
         <div className="usercommentcard-div">
-            <h1>User Comment Card is hereee!</h1>
+            <h3>User Comment Card #{comment.id}</h3>
             <p>{comment.author} {comment.comment}</p>
-            <UserEditCommentForm
-                comment={comment}
-                currentUser={currentUser}
-                updateComment={updateComment}
-                deleteComment={deleteComment}
-            />
+            {comment.user_id === currentUser.id ? 
+                <button onClick={()=> setShowEditCommentForm(showEditCommentForm => !showEditCommentForm)}>Edit Comment Icon</button> 
+                : null
+            }
+            {showEditCommentForm ? 
+                <div>
+                    <UserEditCommentForm
+                        comment={comment}
+                        updateComment={updateComment}
+                        deleteComment={deleteComment}
+                    />
+                </div>
+            : null
+            }
         </div>
     )
 }
 export default UserCommentCard;
+
+// console.log(comment)
+// console.log(comment.comment)
+// console.log(comment.author)

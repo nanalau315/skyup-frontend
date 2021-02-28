@@ -1,72 +1,51 @@
-// need to add currentUser Img
+// need to add currentUser Img and Post img
+
 import React, {useState} from 'react';
-// import {Link} from 'react-router-dom';
 import UserCommentList from './UserCommentList';
-import UserNewCommentForm from './UserNewCommentForm';
 import UserEditPostForm from './UserEditPostForm';
 
-function UserPostCard({post, currentUser}){
-    const [comments, setComments] = useState(post.comments)
+function UserPostCard({post, currentUser, deletePost}){
     const [userPost, setUserPost] = useState(post)
-    // console.log(post.comments[0].comment)
-    // console.log(post.honks.length)
-    // console.log(post.content)
+    const [showEditPostForm, setShowEditPostForm] = useState(false)
+
     function editPost(updatedPost){
         setUserPost(updatedPost)
     }
-
-    function addComment(commentObj){
-        const newArr = [...comments, commentObj]
-        setComments(newArr)
-    }
-
-    function updateComment(updatedCommentObj){
-        const newArr = comments.map((comment) => {
-            if (comment.id === updatedCommentObj.id){
-                return updatedCommentObj
-            } else {
-                return comment
-            }
-        })
-        setComments(newArr)
-    }
-
-    function deleteComment(id){
-        const newArr = comments.filter((comment) => {
-            return comment.id !== id
-        })
-        setComments(newArr)
-    }
-
+    
     return(
         <div className="userpostcard-div">
-            <h1>User Post Card</h1>
+            <h1>User Post Card#{userPost.id}</h1>
             {/* currentUser's img! */}
-            <h1>UserImgHere!</h1>
-            <p>{currentUser.username}</p>
+            <h3>UserImgHere!</h3>
+            <h4>{userPost.author}</h4>
             {/* post img! */}
-            <h1>PostImgHere!</h1>
-            <p>{userPost.honks.length}</p>
-            <p>{userPost.content}</p>
-            <UserCommentList 
-                comments={comments}
+            <h3>PostImgHere!</h3>
+            <h4>{userPost.honks.length}</h4>
+            <h4>{userPost.content}</h4>
+            <UserCommentList
+                postId={post.id} 
+                comments={post.comments}
                 currentUser={currentUser}
-                updateComment={updateComment}
-                deleteComment={deleteComment}
-            />
-            <UserNewCommentForm
-                currentUser={currentUser}
-                post={userPost}
-                addComment={addComment}
-            />
-
-            <UserEditPostForm 
-                post={userPost} 
-                editPost={editPost}
-                currentUser={currentUser}
-            />
-
+                />
+            {userPost.user_id === currentUser.id ?
+                <button onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>Edit Post Icon</button>
+                : null}
+                {showEditPostForm ?
+                    <div>
+                        <UserEditPostForm 
+                            post={userPost} 
+                            editPost={editPost}
+                            currentUser={currentUser}
+                            deletePost={deletePost}
+                        />
+                    </div> 
+                : null
+                }
         </div>
     )
 }
 export default UserPostCard;
+
+// console.log(post.comments[0].comment)
+// console.log(post.honks.length)
+// console.log(post.content)

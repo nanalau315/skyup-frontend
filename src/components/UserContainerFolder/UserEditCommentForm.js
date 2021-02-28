@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 
-function UserEditCommentForm({comment, currentUser, updateComment, deleteComment}){
-    // console.log(comment)
-
+function UserEditCommentForm({comment, updateComment, deleteComment}){
     const API = "http://localhost:3001/"
     const [newComment, setNewComment] = useState("")
 
@@ -30,10 +28,10 @@ function UserEditCommentForm({comment, currentUser, updateComment, deleteComment
 
     return(
         <div className="usereditcommentform-div">
-            <h1>User Edit Comment Form</h1>
+            <h3>User Edit Comment Form</h3>
             <form className="usereditcommentform" onSubmit={handleSubmit}>
                 <input className="comment-input" type="text" name="comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)} placeholder={comment.comment} required/>
-                <button type="submit">Update</button>
+                <button type="submit">Update Comment</button>
             </form>
                 <button onClick={handleDelete}>Delete Comment</button>
         </div>

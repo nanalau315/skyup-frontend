@@ -1,9 +1,34 @@
-import React from 'react';
-import UserCommentCard from './UserCommentCard'
+import React, {useState} from 'react';
+import UserCommentCard from './UserCommentCard';
+import UserNewCommentForm from './UserNewCommentForm';
 
-function UserCommentList({currentUser, comments, updateComment, deleteComment}){
-    // console.log(comments)
-    const commentsArr = comments.map((comment) => {
+function UserCommentList({currentUser, comments, postId}){
+    const [userPostComments, setUserPostComments] = useState(comments)
+
+    function addComment(commentObj){
+        const newArr = [...userPostComments, commentObj]
+        setUserPostComments(newArr)
+    }
+    
+    function updateComment(updatedCommentObj){
+        const newArr = userPostComments.map((comment) => {
+            if (comment.id === updatedCommentObj.id){
+                return updatedCommentObj
+            } else {
+                return comment
+            }
+        })
+        setUserPostComments(newArr)
+    }
+    
+    function deleteComment(id){
+        const newArr = userPostComments.filter((comment) => {
+            return comment.id !== id
+        })
+        setUserPostComments(newArr)
+    }
+    
+    const commentCardArr = userPostComments.map((comment) => {
         return(
             <div>
                 <UserCommentCard
@@ -19,8 +44,13 @@ function UserCommentList({currentUser, comments, updateComment, deleteComment}){
 
     return(
         <div>
-            <h1>Heyyy CommentList Here</h1>
-            {commentsArr}
+            <h3>Comment List</h3>
+            {commentCardArr}
+            <UserNewCommentForm
+                currentUser={currentUser}
+                postId={postId}
+                addComment={addComment}
+            />
         </div>
     )
 }

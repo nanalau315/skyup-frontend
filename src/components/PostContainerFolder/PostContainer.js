@@ -1,22 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import React from 'react';
+import PostList from './PostList';
 
 function PostContainer({currentUser}){
-    const API = "http://localhost:3001/"
-    const [posts, setPosts] = useState(null)
-    const {id} = useParams()
-
-    useEffect(() => {
-        fetch(`${API}posts/${id}`)
-            .then(r => r.json())
-            .then(postArr => {
-                setPosts(postArr)
-            })
-    }, [id])
 
     return(
-        <div>
-            <h1>Hello! PostContainer</h1>
+        <div className="postcontainer-div">
+            <h1>PostContainer</h1>
+            <PostList currentUser={currentUser}/>
         </div>
     )
 

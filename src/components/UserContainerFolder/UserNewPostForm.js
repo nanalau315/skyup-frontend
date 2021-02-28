@@ -5,7 +5,6 @@ function UserNewPostForm({currentUser}){
     const API = "http://localhost:3001/"
     const history = useHistory()
     const [content, setContent] = useState("")
-    // console.log(currentUser)
 
     function handleSubmit(e){
         e.preventDefault()

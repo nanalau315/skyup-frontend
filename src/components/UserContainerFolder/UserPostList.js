@@ -7,15 +7,21 @@ function UserPostList({currentUser}){
 
     useEffect(() => {
         fetch(`${API}posts`)
-        .then(r => r.json())
-        .then(postsObjs => {
-            const currentUserPosts = postsObjs.filter((post) => {
-                return post.user_id === currentUser.id
-            }).reverse()
-            setUserPosts(currentUserPosts)
-            // console.log(currentUserPosts)
-        })
+            .then(r => r.json())
+            .then(postsObjs => {
+                const currentUserPosts = postsObjs.filter((post) => {
+                    return post.user_id === currentUser.id
+                }).reverse()
+                setUserPosts(currentUserPosts)
+            })
     }, [currentUser.id])
+    
+    function deletePost(id){
+        const newUserPostsArr = userPosts.filter((post) => {
+            return post.id !== id
+        })
+        setUserPosts(newUserPostsArr)
+    }
 
     const userPostsArr = userPosts.map((post) => {
         return(
@@ -23,15 +29,17 @@ function UserPostList({currentUser}){
                 key={post.id} 
                 post={post}
                 currentUser={currentUser}
+                deletePost={deletePost}
             />
         )
     })
 
     return(
         <div className="userpostlist-div">
-            <h1>User Post List</h1>
+            <h3>User Post List</h3>
             {userPostsArr}
         </div>
     )
 }
+
 export default UserPostList;
