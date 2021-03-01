@@ -8,6 +8,7 @@ function PostCommentCard({comment, currentUser, updateComment, deleteComment}){
         <div>
             <h3>Post Comment Card</h3>
             <p>{comment.author} {comment.comment}</p>
+            <h6>{comment.created_time} ago</h6>
             {comment.user_id === currentUser.id ? 
                 <button onClick={()=> setShowEditCommentForm(showEditCommentForm => !showEditCommentForm)}>Edit Comment Icon</button> 
                 : null

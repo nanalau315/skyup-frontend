@@ -1,10 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PostList from './PostList';
 
 function PostContainer({currentUser}){
     return(
         <div className="postcontainer-div">
             <h1>PostContainer</h1>
+            <h3><Link to="/newpost">New Post Icon!!!</Link></h3>
             <PostList currentUser={currentUser}/>
         </div>
     )
