@@ -51,19 +51,19 @@ function UserPostCard({post, currentUser, deletePost}){
                 comments={userPost.comments}
                 currentUser={currentUser}
                 />
-            {userPost.user_id === currentUser.id ?
-                <button onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>Edit Post Icon</button>
+            {userPost.user_id === currentUser.id
+                ? <button onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>Edit Post Icon</button>
                 : null}
-                {showEditPostForm ?
-                    <div>
+                {showEditPostForm 
+                    ? <div>
                         <UserEditPostForm 
                             post={userPost} 
                             editPost={editPost}
                             currentUser={currentUser}
                             deletePost={deletePost}
                         />
-                    </div> 
-                : null
+                        </div> 
+                    : null
                 }
         </div>
     )

@@ -6,7 +6,8 @@ import AuthContainer from "./AuthContainerFolder/AuthContainer";
 import PostContainer from "./PostContainerFolder/PostContainer";
 import UserContainer from "./UserContainerFolder/UserContainer";
 import UserNewPostForm from "./UserContainerFolder/UserNewPostForm";
-import UserEditPostForm from "./UserContainerFolder/UserEditPostForm";
+import UserFollowersList from './UserContainerFolder/UserFollowersList';
+import UserFollowingList from './UserContainerFolder/UserFolloweeList';
 
 function App() {
   const API = "http://localhost:3001/"
@@ -36,14 +37,20 @@ function App() {
         <Route path="/posts">
           {currentUser ? <PostContainer currentUser={currentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
-        <Route path="/user">
+        <Route path="/user/:id/followers">
+          {currentUser ? <UserFollowersList currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
+        </Route>
+        <Route path="/user/:id/following">
+          {currentUser ? <UserFollowingList currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
+        </Route>
+        {/* <Route path="/user/:id">
+          {currentUser ? <UserFollowingList currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
+        </Route> */}
+        <Route exact path="/user/:id" component={UserContainer}>
           {currentUser ? <UserContainer currentUser={currentUser} setCurrentUser={setCurrentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
         <Route path="/newpost">
           {currentUser ? <UserNewPostForm currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
-        </Route>
-        <Route path="/editpost">
-          {currentUser ? <UserEditPostForm currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
         <Route exact path="/">
           <Home/>

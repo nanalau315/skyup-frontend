@@ -32,7 +32,7 @@ function UserCommentList({currentUser, comments, postId}){
         return(
             <div>
                 <UserCommentCard
-                    key={comment.id}
+                    key={`comment-${comment.id}`}
                     comment={comment}
                     currentUser={currentUser}
                     updateComment={updateComment}
