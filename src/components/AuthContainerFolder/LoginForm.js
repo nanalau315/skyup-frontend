@@ -31,7 +31,7 @@ function LoginForm({ setCurrentUser }) {
             const { user, token } = data;
             localStorage.setItem("token", token);
             setCurrentUser(user);
-            history.push("/user");
+            history.push("/users");
             }
         });
     }

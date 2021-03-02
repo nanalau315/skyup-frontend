@@ -15,7 +15,7 @@ function UserNewPostForm({currentUser}){
         })
             .then(r => r.json())
             .then(newPostObj => {
-                history.push(`/user`)
+                history.push(`/users`)
             })
     }
 

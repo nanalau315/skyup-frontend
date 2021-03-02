@@ -25,7 +25,8 @@ function NavBar({setCurrentUser, currentUser}){
                     <NavLink to="/" exact>Hoooome!</NavLink>
                     <NavLink to="/posts" exact>All posts!</NavLink>
                     <NavLink to="/" exact onClick={handleLogOut}>Logout</NavLink>
-                    <NavLink to={`user/${currentUser.id}`} exact>Profile(userimg!)</NavLink>
+                    {/* I want the navLink will point to currentUser User Container */}
+                    <NavLink to="/users" exact>Profile(userimg!)</NavLink>
                     {/* if possible add a dropdown to the profile img that contain logout and settings! */}
                 </div>
                 :

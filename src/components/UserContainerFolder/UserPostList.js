@@ -30,6 +30,7 @@ function UserPostList({currentUser}){
                 post={post}
                 currentUser={currentUser}
                 deletePost={deletePost}
+                
             />
         )
     })

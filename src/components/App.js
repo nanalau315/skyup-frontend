@@ -37,18 +37,18 @@ function App() {
         <Route path="/posts">
           {currentUser ? <PostContainer currentUser={currentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
-        <Route path="/user/:id/followers">
+        <Route exact path="/users">
+          {currentUser ? <UserContainer currentUser={currentUser} setCurrentUser={setCurrentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
+        </Route>
+        <Route path="/user/followers">
           {currentUser ? <UserFollowersList currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
-        <Route path="/user/:id/following">
+        <Route path="/user/following">
           {currentUser ? <UserFollowingList currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
         {/* <Route path="/user/:id">
-          {currentUser ? <UserFollowingList currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
-        </Route> */}
-        <Route exact path="/user/:id" component={UserContainer}>
           {currentUser ? <UserContainer currentUser={currentUser} setCurrentUser={setCurrentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
-        </Route>
+        </Route> */}
         <Route path="/newpost">
           {currentUser ? <UserNewPostForm currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
