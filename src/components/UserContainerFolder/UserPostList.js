@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import UserPostCard from './UserPostCard';
 
-function UserPostList({currentUser}){
+function UserPostList({currentUser, user}){
     const API = "http://localhost:3001/"
     const [userPosts, setUserPosts] = useState([])
 
@@ -10,11 +10,11 @@ function UserPostList({currentUser}){
             .then(r => r.json())
             .then(postsObjs => {
                 const currentUserPosts = postsObjs.filter((post) => {
-                    return post.user_id === currentUser.id
+                    return post.user_id === user.id
                 }).reverse()
                 setUserPosts(currentUserPosts)
             })
-    }, [currentUser.id])
+    }, [user])
     
     function deletePost(id){
         const newUserPostsArr = userPosts.filter((post) => {

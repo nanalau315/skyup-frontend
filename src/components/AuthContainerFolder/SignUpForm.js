@@ -31,7 +31,7 @@ function SignUpForm({ setCurrentUser }) {
             const { user, token } = data;
             localStorage.setItem("token", token);
             setCurrentUser(user);
-            history.push("/users");
+            history.push(`/user/${user.id}`);
             }
         });
     }
