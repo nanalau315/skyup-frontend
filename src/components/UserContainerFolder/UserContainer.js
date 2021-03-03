@@ -9,15 +9,26 @@ import UserPostList from './UserPostList';
 import {useParams} from 'react-router-dom';
 
 function UserContainer({currentUser, setCurrentUser}){
+    console.log(currentUser)
     // followee = followed_users = who I am following
     // follower = following_users = who is following me
+    const emptyUserHolder = {
+        id: null,
+        username: "",
+        posts: [],
+        honks: [],
+        comments: [],
+        followed_users: [],
+        followees: [],
+        followers: [],
+        following_users: []
+    }
+
     const params = useParams()
     const API = "http://localhost:3001/"
-    const [user, setUser] = useState(currentUser)
+    const [user, setUser] = useState(emptyUserHolder)
     const [errors, setErrors] = useState([]);
-    const [currentUserFollowedUsers, setCurrentUserFollowedUsers] = useState(currentUser.followed_users)
     
-    // console.log(currentUser.followed_users)
     useEffect(()=>{
         fetch(`${API}users/find/${params.id}`)
         .then(r => r.json())
@@ -26,59 +37,103 @@ function UserContainer({currentUser, setCurrentUser}){
         })
     }, [params.id])
     
-    useEffect(() => {
-        if (currentUser.followees.map((followee) => {
-            return followee.id
-        }).includes(user.id)){
-            setIsFollowed(true)
-        } else {
-            setIsFollowed(false)
-        }
-    },[currentUser.followees, user.id])
-    const userFollowees = currentUser.followees.map((followee) => {
+    const [updatedCurrentUser, setUpdatedCurrentUser] = useState(currentUser)
+    // currentUserFollowedUsers is friendshipObjs: {id: 77, follower_id: 1, followee_id: 2}
+    const [currentUserFollowedUsers, setCurrentUserFollowedUsers] = useState(currentUser.followed_users)
+    // currentUserFollowees is followeesObjs: {id: 2, username: "test"}
+    const [currentUserFollowees, setCurrentUserFollowees] = useState(currentUser.followees)
+    console.log(currentUserFollowees)
+    
+    // the following checks if currentUser followed the user already
+    const userFollowees = currentUserFollowees.map((followee) => {
         return followee.id
     })
     const [isFollowed, setIsFollowed] = useState(userFollowees.includes(user.id))
-
+    
+    useEffect(()=>{
+        fetch(`${API}users/find/${currentUser.id}`)
+        .then(r => r.json())
+        .then(userObj=>{
+            setUpdatedCurrentUser(userObj)
+            setCurrentUserFollowedUsers(userObj.followed_users)
+            setCurrentUserFollowees(userObj.followees)
+        })
+    }, [currentUser.id])
+    
+    useEffect(() => {
+        if (currentUserFollowees.map((followee) => {
+            return followee.id
+        }).includes(user.id)){
+            // show "Unfollow"
+            setIsFollowed(true)
+        } else {
+            // show "Follow"
+            setIsFollowed(false)
+        }
+    },[currentUserFollowees, currentUserFollowedUsers, user.id])
+    
+    console.log(currentUserFollowees)
     // console.log(userFollowees.includes(user.id))
     // console.log(userFolloweesFriendshipId.id)
     
     function handleFollow(userId){
         setIsFollowed((isFollowed) => !isFollowed)
-        if (!isFollowed){
+        console.log("in handleFollow")
+        if (isFollowed === false){
             fetch(`${API}friendships`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    follower_id: currentUser.id, 
+                    follower_id: updatedCurrentUser.id, 
                     followee_id: userId
                 })
             })
             .then(r => r.json())
             .then((data) => {
                 if (data.errors) {
+                    console.log("in handleFollow WITH error create path")
                     setErrors(data.errors);
                 } else { 
-                    setCurrentUserFollowedUsers((currentUserFollowedUsers) => [...currentUserFollowedUsers, data])
+                    console.log(data)
+                    console.log("in handleFollow NO ERROR create path")
+                    // data = friendship object = {id: 77, follower_id: 1, followee_id: 2}
+                    const newCurrentUserFollowedUsers = [...currentUserFollowedUsers, data]
+                    console.log(newCurrentUserFollowedUsers)
+                    setCurrentUserFollowedUsers(newCurrentUserFollowedUsers)
+
+
+                    const newCurrentUserFollowee = {id: data.followee_id, username: user.username}
+                    console.log(newCurrentUserFollowee)
+                    setCurrentUserFollowees([...currentUserFollowees, newCurrentUserFollowee])
                 }
             });
         } else {
-            const userFolloweesFriendshipId = currentUserFollowedUsers.find((followed_user) => {
+            console.log("in handleFollow delete path")
+            // first, find the friendshipObj from currentUserFollowedUsers array that needs to be destroy
+            const userFolloweesFriendshipObj = currentUserFollowedUsers.find((followed_user) => {
                 return followed_user.followee_id === userId
             })
-            // console.log(userFolloweesFriendshipId)
-            fetch(`${API}friendships/${userFolloweesFriendshipId.id}`, {
+            // console.log(userFolloweesFriendshipObj)
+            fetch(`${API}friendships/${userFolloweesFriendshipObj.id}`, {
                 method: "DELETE",
             })
-                .then(removeFollowedUser(userFolloweesFriendshipId.id))
+                .then(removeFollowedUser(userFolloweesFriendshipObj.id))
         } 
     }
-    
+
+    // the (id) being passed down to the following function is the friendshipObj.id
+    // currentUserFollowedUsers is friendshipObjs: {id: 77, follower_id: 1, followee_id: 2}
+    // currentUserFollowees is followeesObjs: {id: 2, username: "test"}
     function removeFollowedUser(id){
-        const newFollowedUsersArr = currentUserFollowedUsers.filter((user) => {
-            return user.id !== id
+        const newFollowedUsersArr = currentUserFollowedUsers.filter((friendshipObj) => {
+            return friendshipObj.id !== id
+        })
+        const newCurrentUserFolloweesArr = currentUserFollowees.filter((followee) => {
+            return followee.id !== user.id
         })
         setCurrentUserFollowedUsers(newFollowedUsersArr)
+        setCurrentUserFollowees(newCurrentUserFolloweesArr)
+        console.log(currentUserFollowees)
     }
     // console.log(userFollowees.includes(user.id))
     return(
@@ -103,7 +158,7 @@ function UserContainer({currentUser, setCurrentUser}){
             
             {user.posts.length > 0 ?
                 <UserPostList
-                currentUser={currentUser}
+                currentUser={updatedCurrentUser}
                 user={user}
                 />
                 : "You Don't Have Any Post Yet!"}
@@ -113,34 +168,3 @@ function UserContainer({currentUser, setCurrentUser}){
 }
 
 export default UserContainer;
-// : (userFolloweesFriendshipId.id)
-// ? (<button onClick={() => handleUnfollow(userFolloweesFriendshipId.id)}>{isUnfollowed ? "Unfollowed!" : "Unfollow!"}</button>)
-// : (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Followed!" : "Follow!"}</button>)
-
-// function handleUnfollow(id){
-//     fetch(`${API}friendships/${id}`, {
-//         method: "DELETE",
-//     })
-//     setIsUnfollowed((isUnfollowed) => !isUnfollowed)
-// }
-// function handleFollow(userId){
-//     fetch(`${API}friendships`, {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify({follower_id: currentUser.id, followee_id: userId})
-//     })
-//         .then(r => r.json())
-//         .then((data) => {
-//             if (data.errors) {
-//             setErrors(data.errors);
-//             } else {
-//             setIsFollowed((isFollowed) => !isFollowed)
-//             }
-//         });
-// }
-// function handleUnfollow(id){
-//     fetch(`${API}friendships/${id}`, {
-//         method: "DELETE",
-//     })
-//     setIsUnfollowed((isUnfollowed) => !isUnfollowed)
-// }

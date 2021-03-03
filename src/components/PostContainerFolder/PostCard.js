@@ -33,7 +33,7 @@ function PostCard({post, currentUser, deletePost}){
 
     return(
         <div>
-            <h3>Post Card {postCard.id}</h3>
+            <h1>Post Card {postCard.id}</h1>
             {/* author's Img */}
             <h4>{postCard.author}</h4>
             {/* Post Img!! */}
