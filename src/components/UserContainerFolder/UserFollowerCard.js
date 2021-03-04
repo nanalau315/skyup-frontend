@@ -25,7 +25,6 @@ function UserFollowerCard({follower, removeFollower, currentUser, user}){
 
     return(
         <div>
-            <h3>User Follower Card</h3>
             {/* follwer img!! */}
             <h4>{username}</h4>
             {user.id === currentUser.id 

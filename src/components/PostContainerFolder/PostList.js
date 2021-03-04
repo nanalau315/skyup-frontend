@@ -14,12 +14,22 @@ function PostList({currentUser}){
             })
     },[])
 
+    // console.log(posts)
+
+    function deletePost(id){
+        const newPostsArr = posts.filter((post) => {
+            return post.id !== id
+        })
+        setPosts(newPostsArr)
+    }
+
     const postArr = posts.map((post) => {
         return (
             <PostCard
                 key={post.id}
                 post={post}
                 currentUser={currentUser}
+                deletePost={deletePost}
             />
         )
     })
@@ -27,7 +37,10 @@ function PostList({currentUser}){
     return(
         <div>
             <h3>Post List</h3>
-            {postArr}
+            {postArr.length > 0
+                ? postArr
+                : null
+                }
         </div>
     )
 }

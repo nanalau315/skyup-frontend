@@ -1,12 +1,25 @@
-//Need to add Post Img!
+//Need to add Post Img! => ADDED!!!!!! WOOHOOO!!!
 
 import React, {useState} from 'react';
 import PostCommentList from './PostCommentList'
 import PostEditForm from './PostEditForm';
 
 function PostCard({post, currentUser, deletePost}){
+    // console.log(post)
+    const emptyPostHolder ={
+        author: "",
+        comments:[],
+        content: "",
+        created_time: "",
+        honks: [],
+        id: 0,
+        post_image: {},
+        user: {},
+        user_id: 0
+    }
     const API = "http://localhost:3001/"
     const [postCard, setPostCard] = useState(post)
+    // console.log(postCard)
     const [showEditPostForm, setShowEditPostForm] = useState(false)
     const [postHonks, setPostHonks] = useState(postCard.honks.length)
 
@@ -30,14 +43,21 @@ function PostCard({post, currentUser, deletePost}){
             .then(setPostHonks((postHonks) => postHonks + 1))
             setCurrentUserHonks((currentUserHonks) => currentUserHonks + 1)
     }
-
+    
+    // console.log(postCard.image_url)
+    // the url looks like this :  http://localhost:3001/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--efc4772c387f6349f3eea1771c66812ace89046e/cute_cat.jpg
     return(
         <div>
             <h1>Post Card {postCard.id}</h1>
             {/* author's Img */}
             <h4>{postCard.author}</h4>
-            {/* Post Img!! */}
-            <h3>PostImgHere!</h3>
+            {postCard.image_url
+                ? <img 
+                    src={postCard.image_url}
+                    alt="cat"
+                />
+                : null
+            }
             {currentUserHonks < 50 
                 ? <button onClick={handleHonk}>Honk!</button>
                 : "You've honk the maximum amount!"
@@ -62,7 +82,7 @@ function PostCard({post, currentUser, deletePost}){
                             currentUser={currentUser}
                             deletePost={deletePost}
                         />
-                    </div> 
+                        </div> 
                     : null
                 }
 

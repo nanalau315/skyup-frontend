@@ -1,4 +1,5 @@
 // need to add currentUser Img and Post img
+// post image added!!!!!
 
 import React, {useState} from 'react';
 import UserCommentList from './UserCommentList';
@@ -20,6 +21,7 @@ function UserPostCard({post, currentUser, deletePost}){
         setUserPost(updatedPost)
     }
 
+
     function handleHonk(){
         fetch(`${API}honks`,{
             method: "POST",
@@ -37,8 +39,13 @@ function UserPostCard({post, currentUser, deletePost}){
             {/* currentUser's img! */}
             <h3>UserImgHere!</h3>
             <h4>{userPost.author}</h4>
-            {/* post img! */}
-            <h3>PostImgHere!</h3>
+            {userPost.image_url
+                ? <img 
+                    src={userPost.image_url}
+                    alt="cat"
+                />
+                : null
+            }
             {currentUserHonks < 50
                 ? <button onClick={handleHonk}>Honk!</button>
                 : "You've honk the maximum amount!"

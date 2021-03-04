@@ -3,8 +3,16 @@ import {useParams} from 'react-router-dom';
 import UserFolloweeCard from "./UserFolloweeCard"
 
 function UserFolloweeList({currentUser}){
+    const emptyFriendshipHolder = [
+        {   
+            id: 0,
+            follower_id: 0,
+            followee_id: 0
+        }
+    ]
+
     const params = useParams()
-    const [followeesArr, setFolloweesArr] = useState(currentUser.followed_users)
+    const [followeesArr, setFolloweesArr] = useState(emptyFriendshipHolder)
     const [user, setUser] = useState({})
     const API = "http://localhost:3001/"
 
@@ -17,16 +25,20 @@ function UserFolloweeList({currentUser}){
         })
     }, [params.id])
 
-    const userFollowees = followeesArr.map((followee) =>{
-        return (
-            <UserFolloweeCard
-                key={followee.id}
-                user={user}
-                currentUser={currentUser}
-                followee={followee}
-                removeFollowee={removeFollowee}
-            />
-        )
+    const userFollowees = followeesArr.map((followee) => {
+        if (followee.id === 0){
+            return null
+        } else {
+            return (
+                <UserFolloweeCard
+                    key={followee.id}
+                    user={user}
+                    currentUser={currentUser}
+                    followee={followee}
+                    removeFollowee={removeFollowee}
+                />
+            )
+        }
     })
 
     function removeFollowee(id){
@@ -39,7 +51,7 @@ function UserFolloweeList({currentUser}){
     return(
         <div className="user-following-list-div">
             <h3>User Followees List</h3>
-            {followeesArr.length > 0
+            {userFollowees.length > 0
                 ? userFollowees
                 : "You havent followed anyone yet!"
             }

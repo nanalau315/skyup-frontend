@@ -9,11 +9,11 @@ import UserPostList from './UserPostList';
 import {useParams} from 'react-router-dom';
 
 function UserContainer({currentUser, setCurrentUser}){
-    console.log(currentUser)
+    // console.log(currentUser)
     // followee = followed_users = who I am following
     // follower = following_users = who is following me
     const emptyUserHolder = {
-        id: null,
+        id: 0,
         username: "",
         posts: [],
         honks: [],
@@ -42,7 +42,7 @@ function UserContainer({currentUser, setCurrentUser}){
     const [currentUserFollowedUsers, setCurrentUserFollowedUsers] = useState(currentUser.followed_users)
     // currentUserFollowees is followeesObjs: {id: 2, username: "test"}
     const [currentUserFollowees, setCurrentUserFollowees] = useState(currentUser.followees)
-    console.log(currentUserFollowees)
+    // console.log(currentUserFollowees)
     
     // the following checks if currentUser followed the user already
     const userFollowees = currentUserFollowees.map((followee) => {
@@ -72,13 +72,12 @@ function UserContainer({currentUser, setCurrentUser}){
         }
     },[currentUserFollowees, currentUserFollowedUsers, user.id])
     
-    console.log(currentUserFollowees)
+    // console.log(currentUserFollowees)
     // console.log(userFollowees.includes(user.id))
-    // console.log(userFolloweesFriendshipId.id)
     
     function handleFollow(userId){
         setIsFollowed((isFollowed) => !isFollowed)
-        console.log("in handleFollow")
+        // console.log("in handleFollow")
         if (isFollowed === false){
             fetch(`${API}friendships`, {
                 method: "POST",
@@ -91,24 +90,22 @@ function UserContainer({currentUser, setCurrentUser}){
             .then(r => r.json())
             .then((data) => {
                 if (data.errors) {
-                    console.log("in handleFollow WITH error create path")
+                    // console.log("in handleFollow WITH error create path")
                     setErrors(data.errors);
                 } else { 
-                    console.log(data)
-                    console.log("in handleFollow NO ERROR create path")
+                    // console.log(data)
+                    // console.log("in handleFollow NO ERROR create path")
                     // data = friendship object = {id: 77, follower_id: 1, followee_id: 2}
                     const newCurrentUserFollowedUsers = [...currentUserFollowedUsers, data]
-                    console.log(newCurrentUserFollowedUsers)
+                    // console.log(newCurrentUserFollowedUsers)
                     setCurrentUserFollowedUsers(newCurrentUserFollowedUsers)
-
-
                     const newCurrentUserFollowee = {id: data.followee_id, username: user.username}
-                    console.log(newCurrentUserFollowee)
+                    // console.log(newCurrentUserFollowee)
                     setCurrentUserFollowees([...currentUserFollowees, newCurrentUserFollowee])
                 }
             });
         } else {
-            console.log("in handleFollow delete path")
+            // console.log("in handleFollow delete path")
             // first, find the friendshipObj from currentUserFollowedUsers array that needs to be destroy
             const userFolloweesFriendshipObj = currentUserFollowedUsers.find((followed_user) => {
                 return followed_user.followee_id === userId
@@ -133,7 +130,7 @@ function UserContainer({currentUser, setCurrentUser}){
         })
         setCurrentUserFollowedUsers(newFollowedUsersArr)
         setCurrentUserFollowees(newCurrentUserFolloweesArr)
-        console.log(currentUserFollowees)
+        // console.log(currentUserFollowees)
     }
     // console.log(userFollowees.includes(user.id))
     return(
