@@ -1,12 +1,14 @@
 // Need to add UserUpdateForm
-// currentUser img
-//follower, followee, honk
+// currentUser img => ADDED!!!
+// follower, followee, honk => ADDED!!!
+// HONK for USER
 
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import UserPostList from './UserPostList';
 import {useParams} from 'react-router-dom';
+import UserPostList from './UserPostList';
+// import UserUpdateForm from './UserUpdateForm'
 
 function UserContainer({currentUser, setCurrentUser}){
     // console.log(currentUser)
@@ -14,6 +16,7 @@ function UserContainer({currentUser, setCurrentUser}){
     // follower = following_users = who is following me
     const emptyUserHolder = {
         id: 0,
+        image_url: "",
         username: "",
         posts: [],
         honks: [],
@@ -139,7 +142,13 @@ function UserContainer({currentUser, setCurrentUser}){
             {errors.map((error) => {
                 return <p key={error}>{error}</p>;
             })}
-            {/* currentUser img */}
+            {user.image_url
+                ? <img 
+                    src={user.image_url}
+                    alt={user.username}
+                    />
+                : null
+            }
             <h1>{user.username}</h1>
             {user.id !== currentUser.id
                 ? (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Unfollow!" : "Follow!"}</button>)
@@ -147,19 +156,31 @@ function UserContainer({currentUser, setCurrentUser}){
             }
             <h3><Link to={`/user/${user.id}/followers`}>Followers</Link></h3>
             <h3><Link to={`/user/${user.id}/following`}>Following</Link></h3>
+            <h3><Link to="/update">Update User Icon!!</Link></h3>
             {/* honk! */}
             {user.id === currentUser.id
                 ? <h3><Link to="/newpost">New Post Icon!!!</Link></h3>
                 : null
             }
             
-            {user.posts.length > 0 ?
-                <UserPostList
-                currentUser={updatedCurrentUser}
-                user={user}
+            {user.posts.length > 0 
+                ? <UserPostList
+                    currentUser={updatedCurrentUser}
+                    user={user}
                 />
-                : "You Don't Have Any Post Yet!"}
-            {/* UserUpdateForm */}
+                : "You Don't Have Any Post Yet!"
+            }
+            {/* {user.id === currentUser.id
+                ? <button onClick={()=>{setShowHidden(showHidden => !showHidden)}}>Update User Icon!!</button>
+                : null} */}
+            {/* {showHidden    
+                ? <UserUpdateForm 
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                    setShowHidden={setShowHidden}
+                    />
+                : null
+            } */}
         </div>
     )
 }

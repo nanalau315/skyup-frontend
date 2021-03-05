@@ -7,7 +7,7 @@ function UserNewPostForm({currentUser}){
     const history = useHistory()
     const [content, setContent] = useState("")
     const [postImage, setPostImage] = useState(null)
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
 
     function handleSubmit(e){
         e.preventDefault()
@@ -24,12 +24,12 @@ function UserNewPostForm({currentUser}){
         })
             .then(r => r.json())
             .then((data) => {
-                if(data.post_image.errors){
-                    setErrors(data.post_image.errors);
-                } else {
+                // if(data.post_image.errors){
+                //     setErrors(data.post_image.errors);
+                // } else {
                     console.log(data)
                     history.goBack()
-                }
+                // }
             })
                 // newPostObj => {
                 // console.log(newPostObj)
@@ -40,22 +40,23 @@ function UserNewPostForm({currentUser}){
     return(
         <div className="user-new-post-form-div">
             <form onSubmit={handleSubmit}>
-                <input className="content-input" 
+                <input
                     type="text" 
                     name="content" 
                     value={content} 
                     onChange={(e) => setContent(e.target.value)} 
                     placeholder={"Post Content as " + currentUser.username} required
                 />
-                <input type="file" 
+                <input 
+                    type="file" 
                     name="postImage"
                     accept="image/png, image/jpeg, image/jpg" 
                     multiple={false} 
                     onChange={(e) => setPostImage(e.target.files[0] )} 
                 />
-                {errors.map((error) => {
+                {/* {errors.map((error) => {
                 return <p key={error}>{error}</p>;
-                })}
+                })} */}
                 <button type="submit">Create Post</button>
             </form>
         </div>

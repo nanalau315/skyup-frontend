@@ -8,6 +8,7 @@ import UserContainer from "./UserContainerFolder/UserContainer";
 import UserNewPostForm from "./UserContainerFolder/UserNewPostForm";
 import UserFollowersList from './UserContainerFolder/UserFollowersList';
 import UserFollowingList from './UserContainerFolder/UserFolloweeList';
+import UserUpdateForm from './UserContainerFolder/UserUpdateForm'
 import SearchForm from "./SearchContainer.js/SearchForm";
 
 function App() {
@@ -48,7 +49,10 @@ function App() {
           {currentUser ? <UserFollowingList currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
         <Route path="/user/:id">
-          {currentUser ? <UserContainer currentUser={currentUser} setCurrentUser={setCurrentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
+          {currentUser ? <UserContainer currentUser={currentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
+        </Route>
+        <Route path="/update">
+          {currentUser ? <UserUpdateForm currentUser={currentUser} setCurrentUser={setCurrentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
         <Route path="/newpost">
           {currentUser ? <UserNewPostForm currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}

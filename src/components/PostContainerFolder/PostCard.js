@@ -6,17 +6,17 @@ import PostEditForm from './PostEditForm';
 
 function PostCard({post, currentUser, deletePost}){
     // console.log(post)
-    const emptyPostHolder ={
-        author: "",
-        comments:[],
-        content: "",
-        created_time: "",
-        honks: [],
-        id: 0,
-        post_image: {},
-        user: {},
-        user_id: 0
-    }
+    // const emptyPostHolder ={
+    //     author: "",
+    //     comments:[],
+    //     content: "",
+    //     created_time: "",
+    //     honks: [],
+    //     id: 0,
+    //     image_url: "",
+    //     user: {},
+    //     user_id: 0
+    // }
     const API = "http://localhost:3001/"
     const [postCard, setPostCard] = useState(post)
     // console.log(postCard)
