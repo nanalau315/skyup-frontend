@@ -27,7 +27,7 @@ function UserEditCommentForm({comment, updateComment, deleteComment}){
     }
 
     return(
-        <div className="usereditcommentform-div">
+        <div className="user-edit-comment-form-div">
             <h3>User Edit Comment Form</h3>
             <form className="usereditcommentform" onSubmit={handleSubmit}>
                 <input className="comment-input" type="text" name="comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)} placeholder={comment.comment} required/>

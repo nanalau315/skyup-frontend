@@ -30,7 +30,7 @@ function UserCommentList({currentUser, comments, postId}){
     
     const commentCardArr = userPostComments.map((comment) => {
         return(
-            <div>
+            <div className="user-comment-list-div">
                 <UserCommentCard
                     key={`comment-${comment.id}`}
                     comment={comment}

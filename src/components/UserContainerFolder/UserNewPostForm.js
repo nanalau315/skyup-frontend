@@ -40,6 +40,7 @@ function UserNewPostForm({currentUser}){
     return(
         <div className="user-new-post-form-div">
             <form onSubmit={handleSubmit}>
+                <h3>Do not upload files bigger then 5mb, or else it won't show up in your post! You have been warned! 😈</h3>
                 <input
                     type="text" 
                     name="content" 

@@ -40,7 +40,7 @@ function PostCommentList({postId, comments, currentUser}){
     })
 
     return (
-        <div>
+        <div className="post-comment-list-div">
             <h3>Post Comment List</h3>
             {commentCard}
             <PostNewCommentForm

@@ -34,15 +34,24 @@ function UserPostCard({post, currentUser, deletePost}){
     }
     
     return(
-        <div className="userpostcard-div">
+        <div className="user-post-card-div">
             <h1>User Post Card#{userPost.id}</h1>
-            {/* currentUser's img! */}
+            {userPost.user.image_url
+                ? <img 
+                    src={userPost.user.image_url}
+                    alt={userPost.author}
+                />
+                : <img 
+                    src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                    alt={userPost.author}
+                />
+            }
             <h3>UserImgHere!</h3>
             <h4>{userPost.author}</h4>
             {userPost.image_url
                 ? <img 
                     src={userPost.image_url}
-                    alt="cat"
+                    alt={userPost.content}
                 />
                 : null
             }

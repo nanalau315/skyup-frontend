@@ -25,7 +25,7 @@ function PostEditForm({currentUser, post, editPost, deletePost}){
     }
 
     return(
-        <div className="usereditpostform-div">
+        <div className="user-edit-post-form-div">
             <h3>Post Edit Form</h3>
                 <form onSubmit={handleSubmit}>
                     <input className="content-input" type="text" name="content" value={newContent} onChange={(e)=>setNewContent(e.target.value)} placeholder={"Edit Post Content as " +  currentUser.username} required/>

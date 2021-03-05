@@ -10,7 +10,7 @@ function SignUpForm({ setCurrentUser }) {
     const [errors, setErrors] = useState([]);
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [userImage, setUserImage] = useState(null)
+    const [userImage, setUserImage] = useState('.../')
     const history = useHistory();
 
     // function handleChange(e) {

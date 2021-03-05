@@ -42,7 +42,8 @@ function UserUpdateForm({currentUser, setCurrentUser}) {
                             console.log(data);
                             history.push(`/user/${data.id}`);
                         }
-            });}
+                    });
+                }
         }
     }
 

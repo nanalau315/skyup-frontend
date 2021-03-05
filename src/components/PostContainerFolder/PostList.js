@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import {useParams} from 'react-router-dom'
 import PostCard from "./PostCard";
 
 function PostList({currentUser}){
@@ -13,8 +12,6 @@ function PostList({currentUser}){
                 setPosts(postArr)
             })
     },[])
-
-    // console.log(posts)
 
     function deletePost(id){
         const newPostsArr = posts.filter((post) => {
@@ -35,12 +32,12 @@ function PostList({currentUser}){
     })
 
     return(
-        <div>
+        <div className="post-list-div">
             <h3>Post List</h3>
             {postArr.length > 0
                 ? postArr
                 : null
-                }
+            }
         </div>
     )
 }

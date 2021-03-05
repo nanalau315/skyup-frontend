@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 function PostEditCommentForm({comment, updateComment, deleteComment}){
     const API = "http://localhost:3001/"
     const [newComment, setNewComment] = useState(comment.comment)
+    
     function handleSubmit(e){
         e.preventDefault()
-        
         fetch(`${API}comments/${comment.id}`,{
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
@@ -26,7 +26,7 @@ function PostEditCommentForm({comment, updateComment, deleteComment}){
     }
 
     return(
-        <div className="posteditcommentform-div">
+        <div className="post-edit-comment-form-div">
             <h3>Post Edit Comment Form</h3>
             <form className="posteditcommentform" onSubmit={handleSubmit}>
                 <input className="comment-input" type="text" name="comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)} placeholder={comment.comment} required/>

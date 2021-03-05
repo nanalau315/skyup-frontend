@@ -1,14 +1,12 @@
-// Need to add UserUpdateForm
+// Need to add UserUpdateForm => ADDED!!
 // currentUser img => ADDED!!!
 // follower, followee, honk => ADDED!!!
 // HONK for USER
 
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import UserPostList from './UserPostList';
-// import UserUpdateForm from './UserUpdateForm'
 
 function UserContainer({currentUser, setCurrentUser}){
     // console.log(currentUser)
@@ -53,15 +51,33 @@ function UserContainer({currentUser, setCurrentUser}){
     })
     const [isFollowed, setIsFollowed] = useState(userFollowees.includes(user.id))
     
+    // the following gets all the new and updated information on the currentUser
     useEffect(()=>{
-        fetch(`${API}users/find/${currentUser.id}`)
-        .then(r => r.json())
-        .then(userObj=>{
-            setUpdatedCurrentUser(userObj)
-            setCurrentUserFollowedUsers(userObj.followed_users)
-            setCurrentUserFollowees(userObj.followees)
-        })
+        const token = localStorage.getItem("token");
+            if (token) {
+                fetch(`${API}users/${currentUser.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                })
+                .then(r => r.json())
+                .then(userObj=>{
+                    setUpdatedCurrentUser(userObj)
+                    setCurrentUserFollowedUsers(userObj.followed_users)
+                    setCurrentUserFollowees(userObj.followees)
+                })
+        }
     }, [currentUser.id])
+
+    // useEffect(()=>{
+    //     fetch(`${API}users/find/${currentUser.id}`)
+    //     .then(r => r.json())
+    //     .then(userObj=>{
+    //         setUpdatedCurrentUser(userObj)
+    //         setCurrentUserFollowedUsers(userObj.followed_users)
+    //         setCurrentUserFollowees(userObj.followees)
+    //     })
+    // }, [currentUser.id])
     
     useEffect(() => {
         if (currentUserFollowees.map((followee) => {
@@ -147,7 +163,10 @@ function UserContainer({currentUser, setCurrentUser}){
                     src={user.image_url}
                     alt={user.username}
                     />
-                : null
+                : <img 
+                    src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                    alt={user.username}
+                />
             }
             <h1>{user.username}</h1>
             {user.id !== currentUser.id
@@ -170,19 +189,22 @@ function UserContainer({currentUser, setCurrentUser}){
                 />
                 : "You Don't Have Any Post Yet!"
             }
-            {/* {user.id === currentUser.id
-                ? <button onClick={()=>{setShowHidden(showHidden => !showHidden)}}>Update User Icon!!</button>
-                : null} */}
-            {/* {showHidden    
-                ? <UserUpdateForm 
-                    currentUser={currentUser}
-                    setCurrentUser={setCurrentUser}
-                    setShowHidden={setShowHidden}
-                    />
-                : null
-            } */}
         </div>
     )
 }
 
 export default UserContainer;
+
+
+
+// {/* {user.id === currentUser.id
+//     ? <button onClick={()=>{setShowHidden(showHidden => !showHidden)}}>Update User Icon!!</button>
+//     : null} */}
+// {/* {showHidden    
+//     ? <UserUpdateForm 
+//         currentUser={currentUser}
+//         setCurrentUser={setCurrentUser}
+//         setShowHidden={setShowHidden}
+//         />
+//     : null
+// } */}
