@@ -60,7 +60,7 @@ function PostList({currentUser}){
         return (
             <PostCard
             key={post.id}
-            post={post}
+            postId={post.id}
             currentUser={currentUser}
             deletePost={deletePost}
             />
@@ -71,7 +71,7 @@ function PostList({currentUser}){
         return (
             <PostCard
             key={post.id}
-            post={post}
+            postId={post.id}
             currentUser={currentUser}
             deletePost={deletePost}
             />

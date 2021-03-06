@@ -173,12 +173,12 @@ function UserContainer({currentUser, setCurrentUser}){
                 ? (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Unfollow!" : "Follow!"}</button>)
                 : null
             }
-            <h3><Link to={`/user/${user.id}/followers`}>Followers</Link></h3>
-            <h3><Link to={`/user/${user.id}/following`}>Following</Link></h3>
-            <h3><Link to="/update">Update User Icon!!</Link></h3>
+            <button><Link to={`/user/${user.id}/followers`}>Followers</Link></button>
+            <button><Link to={`/user/${user.id}/following`}>Following</Link></button>
+            <button><Link to="/update">Update User Icon!!</Link></button>
             {/* honk! */}
             {user.id === currentUser.id
-                ? <h3><Link to="/newpost">New Post Icon!!!</Link></h3>
+                ? <button><Link to="/newpost">New Post Icon!!!</Link></button>
                 : null
             }
             
