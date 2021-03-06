@@ -66,7 +66,7 @@ function UserContainer({currentUser, setCurrentUser}){
                     setCurrentUserFollowedUsers(userObj.followed_users)
                     setCurrentUserFollowees(userObj.followees)
                 })
-        }
+            }
     }, [currentUser.id])
 
     // useEffect(()=>{

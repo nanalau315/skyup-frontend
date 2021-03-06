@@ -7,7 +7,9 @@ function PostContainer({currentUser}){
         <div className="post-container-div">
             <h1>PostContainer</h1>
             <h3><Link to="/newpost">New Post Icon!!!</Link></h3>
-            <PostList currentUser={currentUser}/>
+            <PostList 
+                currentUser={currentUser}
+            />
         </div>
     )
 }

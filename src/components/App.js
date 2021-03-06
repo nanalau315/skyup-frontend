@@ -37,7 +37,7 @@ function App() {
           <AuthContainer setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path="/posts">
-          {currentUser ? <PostContainer currentUser={currentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
+          {currentUser ? <PostContainer currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
         <Route path="/search">
           {currentUser ? <SearchForm currentUser={currentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
