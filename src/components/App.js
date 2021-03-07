@@ -43,10 +43,6 @@ function App() {
         <Route path="/posts">
           {currentUser ? <PostContainer currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
-        {/* <Route path="/reportpost/:id">
-          {currentUser ? <PostReportForm currentUser={currentUser} /> : "Uh-oh, you need to Login or Signup! 👀"}
-        </Route> */}
-
         <Route path="/search">
           {currentUser ? <SearchForm currentUser={currentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
@@ -60,8 +56,8 @@ function App() {
           {currentUser ? <UserContainer currentUser={currentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
         </Route>
         <Route path="/update">
-        </Route>
           {currentUser ? <UserUpdateForm currentUser={currentUser} setCurrentUser={setCurrentUser}/> : "Uh-oh, you need to Login or Signup! 👀"}
+        </Route>
         <Route exact path="/">
           <Home/>
         </Route>

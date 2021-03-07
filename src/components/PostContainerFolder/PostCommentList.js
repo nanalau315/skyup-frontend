@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PostCommentCard from './PostCommentCard';
 import PostNewCommentForm from './PostNewCommentForm';
 
-function PostCommentList({postId, comments, currentUser}){
-    const [postComments, setPostComments] = useState(comments)
+function PostCommentList({postId, postComments, setPostComments,  currentUser}){
 
     function addComment(commentObj){
         const newArr = [...postComments, commentObj]
@@ -36,7 +35,8 @@ function PostCommentList({postId, comments, currentUser}){
                 currentUser={currentUser}
                 updateComment={updateComment}
                 deleteComment={deleteComment}
-            />)
+            />
+        )
     })
 
     return (

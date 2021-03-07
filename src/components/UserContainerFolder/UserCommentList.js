@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import UserCommentCard from './UserCommentCard';
 import UserNewCommentForm from './UserNewCommentForm';
 
-function UserCommentList({currentUser, comments, postId}){
-    const [userPostComments, setUserPostComments] = useState(comments)
+function UserCommentList({currentUser, userPostComments, setUserPostComments, postId}){
 
     function addComment(commentObj){
         const newArr = [...userPostComments, commentObj]
@@ -30,8 +29,9 @@ function UserCommentList({currentUser, comments, postId}){
     
     const commentCardArr = userPostComments.map((comment) => {
         return(
-            <div className="user-comment-list-div">
+            <div>
                 <UserCommentCard
+                    // key={`comment-${comment.id}`}
                     key={`comment-${comment.id}`}
                     comment={comment}
                     currentUser={currentUser}
@@ -43,7 +43,7 @@ function UserCommentList({currentUser, comments, postId}){
     })
 
     return(
-        <div>
+        <div className="user-comment-list-div">
             <h3>Comment List</h3>
             {commentCardArr}
             <UserNewCommentForm

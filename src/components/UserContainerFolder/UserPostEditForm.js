@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-function UserEditPostForm({currentUser, post, editPost, deletePost}){
+function UserPostEditForm({currentUser, post, editPost, deletePost}){
     const API = "http://localhost:3001/"
     const [newContent, setNewContent] = useState(post.content)
 
@@ -35,4 +35,4 @@ function UserEditPostForm({currentUser, post, editPost, deletePost}){
         </div>
     )
 }
-export default UserEditPostForm;
+export default UserPostEditForm;

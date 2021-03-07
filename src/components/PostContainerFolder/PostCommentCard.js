@@ -3,10 +3,10 @@ import PostEditCommentForm from './PostEditCommentForm';
 
 function PostCommentCard({comment, currentUser, updateComment, deleteComment}){
     const [showEditCommentForm, setShowEditCommentForm] = useState(false)
-    // console.log(comment.author_image_url)
+    
     return(
         <div className="post-comment-card-div">
-            <h3>Post Comment Card</h3>
+            <h3>Post Comment Card #{comment.id}</h3>
             {comment.author_image_url
                 ? <img 
                     src={comment.author_image_url}

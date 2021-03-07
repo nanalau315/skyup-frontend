@@ -44,6 +44,7 @@ function UserContainer({currentUser, setCurrentUser}){
     // currentUserFollowees is followeesObjs: {id: 2, username: "test"}
     const [currentUserFollowees, setCurrentUserFollowees] = useState(currentUser.followees)
     // console.log(currentUserFollowees)
+    const [currentUserFollowingUsers, setCurrentUserFollowingUser] = useState(currentUser.following_users)
     
     // the following checks if currentUser followed the user already
     const userFollowees = currentUserFollowees.map((followee) => {
@@ -65,6 +66,7 @@ function UserContainer({currentUser, setCurrentUser}){
                     setUpdatedCurrentUser(userObj)
                     setCurrentUserFollowedUsers(userObj.followed_users)
                     setCurrentUserFollowees(userObj.followees)
+                    setCurrentUserFollowingUser(userObj.following_users)
                 })
             }
     }, [currentUser.id])
@@ -173,8 +175,8 @@ function UserContainer({currentUser, setCurrentUser}){
                 ? (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Unfollow!" : "Follow!"}</button>)
                 : null
             }
-            <button><Link to={`/user/${user.id}/followers`}>Followers</Link></button>
-            <button><Link to={`/user/${user.id}/following`}>Following</Link></button>
+            <button><Link to={`/user/${user.id}/followers`}>Followers {currentUserFollowingUsers.length}</Link></button>
+            <button><Link to={`/user/${user.id}/following`}>Following {currentUserFollowedUsers.length}</Link></button>
             <button><Link to="/update">Update User Icon!!</Link></button>
             {/* honk! */}
             {user.id === currentUser.id

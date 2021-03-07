@@ -27,10 +27,9 @@ function UserPostList({currentUser, user}){
         return(
             <UserPostCard 
                 key={post.id} 
-                post={post}
+                postId={post.id}
                 currentUser={currentUser}
                 deletePost={deletePost}
-                
             />
         )
     })

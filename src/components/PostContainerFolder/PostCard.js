@@ -6,22 +6,23 @@ import PostEditForm from './PostEditForm';
 import PostReportList from './PostReportList'
 
 function PostCard({postId, currentUser, deletePost}){
-    // console.log(postId)
+
     const emptyPostHolder = {
        author: "",
        comments: [],
        content: "",
        created_time: "",
        honks: [],
-       id: 0,
+       id: null,
        image_url: "",
        postreports: [],
        user: {},
-       user_id: 0
+       user_id: null
     }
     const API = "http://localhost:3001/"
     const [postCard, setPostCard] = useState(emptyPostHolder)
     const [postHonks, setPostHonks] = useState(postCard.honks.length)
+    const [postComments, setPostComments] = useState(postCard.comments)
     const [showEditPostForm, setShowEditPostForm] = useState(false)
     const [showReportList, setShowReportList] = useState(false)
     const [postReportAmount, setPostReportAmount] = useState(postCard.postreports.length)
@@ -33,10 +34,10 @@ function PostCard({postId, currentUser, deletePost}){
                 setPostCard(post)
                 setPostHonks(post.honks.length)
                 setPostReportAmount(post.postreports.length)
+                setPostComments(post.comments)
             })
     },[postId, postReportAmount])
 
-    // console.log(postCard.postreports.length)
     const currentUserTotalHonks = postCard.honks.filter((honk) => {
         return honk.user_id === currentUser.id
     }).length
@@ -91,39 +92,43 @@ function PostCard({postId, currentUser, deletePost}){
                     <h6>{postCard.created_time} ago</h6>
                     <PostCommentList
                         postId={postCard.id}
-                        comments={postCard.comments}
+                        postComments={postComments}
+                        setPostComments={setPostComments}
                         currentUser={currentUser}
                         />
                     {postCard.user_id === currentUser.id 
                         ? <button onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>Edit Post Icon</button>
                         : null
                     }
-                        {showEditPostForm 
-                            ? <div>
-                                <PostEditForm 
-                                    post={postCard} 
-                                    editPost={editPost}
-                                    currentUser={currentUser}
-                                    deletePost={deletePost}
-                                    />
-                                </div> 
-                            : null
-                        }
-                        <br/>
-                        {/* need report icon here */}
-                        <button 
+                    {showEditPostForm 
+                        ? <div>
+                            <PostEditForm 
+                                post={postCard} 
+                                editPost={editPost}
+                                currentUser={currentUser}
+                                deletePost={deletePost}
+                                />
+                            </div> 
+                        : null
+                    }
+                    <br/>
+                    {/* need report icon here */}
+                    {postCard.user_id !== currentUser.id
+                        ? <button 
                             onClick={() => setShowReportList((showReportList) => !showReportList)}>
                                 Reports {postReportAmount}
                         </button>
-                        {showReportList 
-                            ? <PostReportList
-                                postId={postCard.id}
-                                reports={postCard.postreports}
-                                currentUser={currentUser}
-                                setPostReportAmount={setPostReportAmount}
-                            />
-                        :null
-                        }
+                        : null
+                    }
+                    {showReportList 
+                        ? <PostReportList
+                            postId={postCard.id}
+                            reports={postCard.postreports}
+                            currentUser={currentUser}
+                            setPostReportAmount={setPostReportAmount}
+                        />
+                    : null
+                    }
                     </div>
                 : "This post has been reported by members of the community too many times so it has been hide!"
             }
