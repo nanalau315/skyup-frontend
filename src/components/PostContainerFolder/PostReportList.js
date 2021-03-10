@@ -41,12 +41,16 @@ function PostReportList({postId, reports, currentUser, setPostReportAmount}){
                 currentUser={currentUser}
                 updateReport={updateReport}
                 deleteReport={deleteReport}
-            />)
+            />
+        )
     })
 
     return (
         <div className="post-report-list-div">
-            <h3>Post Report List</h3>
+            {reportCard.length > 0 
+                ? <p>Reasons of Reporting:</p>
+                : null
+            }
             {reportCard}
             <PostNewReportForm
                 currentUser={currentUser}

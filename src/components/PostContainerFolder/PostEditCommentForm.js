@@ -27,12 +27,14 @@ function PostEditCommentForm({comment, updateComment, deleteComment}){
 
     return(
         <div className="post-edit-comment-form-div">
-            <h3>Post Edit Comment Form</h3>
-            <form className="posteditcommentform" onSubmit={handleSubmit}>
-                <input className="comment-input" type="text" name="comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)} placeholder={comment.comment} required/>
-                <button type="submit">Update Comment</button>
-            </form>
-                <button onClick={handleDelete}>Delete Comment</button>
+            {/* <h3>Post Edit Comment Form</h3> */}
+            <div className="post-edit-comment-form">
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)} placeholder={comment.comment} required/>
+                    <button type="submit"><i class="fas fa-check"></i></button>
+                </form>
+                    <button onClick={handleDelete}><i class="far fa-trash-alt"></i></button>
+            </div>
         </div>
     )
 }

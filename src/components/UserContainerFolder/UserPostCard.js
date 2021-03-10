@@ -64,31 +64,34 @@ function UserPostCard({postId, currentUser, deletePost}){
         <div className="user-post-card-div">
             {postReportAmount < 5
                 ? <div>
-                    <h1>User Post Card#{userPost.id}</h1>
-                    {userPost.user.image_url
-                        ? <img 
-                            src={userPost.user.image_url}
-                            alt={userPost.author}
-                        />
-                        : <img 
-                            src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
-                            alt={userPost.author}
-                        />
-                    }
-                    <h3>UserImgHere!</h3>
-                    <h4>{userPost.author}</h4>
-                    {userPost.image_url
-                        ? <img 
-                            src={userPost.image_url}
-                            alt={userPost.content}
-                        />
-                        : null
-                    }
+                    {/* <h1>User Post Card#{userPost.id}</h1> */}
+                    <div className="user-post-card-header-div">
+                        {userPost.user.image_url
+                            ? <img 
+                                src={userPost.user.image_url}
+                                alt={userPost.author}
+                            />
+                            : <img 
+                                src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                                alt={userPost.author}
+                            />
+                        }
+                        <h4>{userPost.author}</h4>
+                    </div>
+                    <div className="user-post-card-post-img-div">
+                        {userPost.image_url
+                            ? <img 
+                                src={userPost.image_url}
+                                alt={userPost.content}
+                            />
+                            : null
+                        }
+                    </div>
                     {currentUserHonks < 50
                         ? <button onClick={handleHonk}>Honk!</button>
                         : "You've honk the maximum amount!"
                     }
-                    <h4>{userPostHonks}</h4>
+                    <h4>{userPostHonks} Honk Icon Here</h4>
                     <h4>{userPost.content}</h4>
                     <h6>{userPost.created_time} ago</h6>
                         <UserCommentList

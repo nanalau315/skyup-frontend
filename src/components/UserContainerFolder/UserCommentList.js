@@ -44,7 +44,6 @@ function UserCommentList({currentUser, userPostComments, setUserPostComments, po
 
     return(
         <div className="user-comment-list-div">
-            <h3>Comment List</h3>
             {commentCardArr}
             <UserNewCommentForm
                 currentUser={currentUser}

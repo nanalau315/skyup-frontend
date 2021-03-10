@@ -156,25 +156,26 @@ function UserContainer({currentUser, setCurrentUser}){
     // console.log(userFollowees.includes(user.id))
     return(
         <div className="user-container-div">
-            <h1>User Container</h1>
             {errors.map((error) => {
                 return <p key={error}>{error}</p>;
             })}
-            {user.image_url
-                ? <img 
-                    src={user.image_url}
-                    alt={user.username}
+            <div className="user-container-user-header-div">
+                {user.image_url
+                    ? <img 
+                        src={user.image_url}
+                        alt={user.username}
+                        />
+                    : <img 
+                        src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                        alt={user.username}
                     />
-                : <img 
-                    src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
-                    alt={user.username}
-                />
-            }
-            <h1>{user.username}</h1>
-            {user.id !== currentUser.id
-                ? (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Unfollow!" : "Follow!"}</button>)
-                : null
-            }
+                }
+                <h1>{user.username}</h1>
+                {user.id !== currentUser.id
+                    ? (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Unfollow!" : "Follow!"}</button>)
+                    : null
+                }
+            </div>
             <button><Link to={`/user/${user.id}/followers`}>Followers {currentUserFollowingUsers.length}</Link></button>
             <button><Link to={`/user/${user.id}/following`}>Following {currentUserFollowedUsers.length}</Link></button>
             <button><Link to="/update">Update User Icon!!</Link></button>

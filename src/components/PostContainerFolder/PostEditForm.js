@@ -25,13 +25,12 @@ function PostEditForm({currentUser, post, editPost, deletePost}){
     }
 
     return(
-        <div className="user-edit-post-form-div">
-            <h3>Post Edit Form</h3>
+        <div className="edit-post-form-div">
                 <form onSubmit={handleSubmit}>
                     <input className="content-input" type="text" name="content" value={newContent} onChange={(e)=>setNewContent(e.target.value)} placeholder={"Edit Post Content as " +  currentUser.username} required/>
-                    <button type="submit">Edit Post</button>
+                    <button type="submit"><i class="far fa-edit"></i></button>
                 </form>
-            <button onClick={handleDelete}>Delete Post Icon!</button>
+            <button onClick={handleDelete}><i class="far fa-trash-alt"></i></button>
         </div>
     )
 }

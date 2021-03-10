@@ -31,26 +31,28 @@ function PostNewReportForm({currentUser, postId, addReport}){
 
     return(
         <div className="post-report-form-div">
-            <h3>Post Report Form</h3>
             {!reportOnce
                 ? <div>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="Why are you reporting this post?">
                             Why are you reporting this post?
                         </label>
-                        <input 
-                            className="report-input" 
-                            type="text" 
-                            name="reason" 
-                            value={reason} 
-                            onChange={(e)=>setReason(e.target.value)} 
-                            placeholder={"Report as " +  currentUser.username} 
-                            required
-                        />
-                        <button type="submit">Report it!</button>
+                        <br/>
+                        <div className="post-report-form-input-div">
+                            <input 
+                                className="report-input" 
+                                type="text" 
+                                name="reason" 
+                                value={reason} 
+                                onChange={(e)=>setReason(e.target.value)} 
+                                placeholder={"Report as " +  currentUser.username} 
+                                required
+                            />
+                            <button type="submit"><i class="fas fa-ban"></i></button>
+                        </div>
                     </form>
                 </div>
-                : "You can only report once!"
+                : <div className="post-report-form-report-only-once-div">You can only report once!</div>
             }
         </div>
     )

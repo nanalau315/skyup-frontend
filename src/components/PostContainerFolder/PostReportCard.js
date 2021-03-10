@@ -6,15 +6,14 @@ function PostReportCard({report, currentUser, updateReport, deleteReport}){
 
     return(
         <div className="post-report-card-div">
-            <h3>Post Report Card</h3>
-            <p>{report.reason}</p>
+            <li>{report.reason}
             {report.user_id === currentUser.id 
                 ? <button 
                     onClick={()=> setShowEditReportForm(showEditReportForm => !showEditReportForm)}>
-                        Edit Report Icon!!
+                        <i class="far fa-edit"></i>
                     </button> 
                 : null
-            }
+            }</li>
             {showEditReportForm 
                 ? <div>
                     <PostEditReportForm

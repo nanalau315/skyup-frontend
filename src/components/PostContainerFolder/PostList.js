@@ -80,11 +80,10 @@ function PostList({currentUser}){
         
     return(
         <div className="post-list-div">
-            <h3>Post List</h3>
-            <button 
+            <span 
                 onClick={() => setFilteredByFollowedUser((filteredByFollowedUser) => !filteredByFollowedUser)}>
-                    {filteredByFollowedUser ? "see everyone" : "see my friends!"}
-            </button>
+                    {filteredByFollowedUser ? <i class="fas fa-globe"></i> : <i class="fas fa-users"></i>}
+            </span>
             {!filteredByFollowedUser
                 ? globalPostArr
                 : (currentUserFollowedUsersPostArr.length < 1)

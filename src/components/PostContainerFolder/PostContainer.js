@@ -5,8 +5,7 @@ import PostList from './PostList';
 function PostContainer({currentUser}){
     return(
         <div className="post-container-div">
-            <h1>PostContainer</h1>
-            <h3><Link to="/newpost">New Post Icon!!!</Link></h3>
+            <Link to="/newpost"><i class="fas fa-edit"></i></Link>
             <PostList 
                 currentUser={currentUser}
             />

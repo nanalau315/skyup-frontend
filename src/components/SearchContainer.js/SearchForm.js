@@ -27,7 +27,7 @@ function SearchForm ({currentUser}){
                 <SearchCard
                     key={user.id}
                     user={user}
-                    currentUser={currentUser}
+                    // currentUser={currentUser}
                 />
             </Link>
         )
@@ -35,14 +35,16 @@ function SearchForm ({currentUser}){
     
     return(
         <div className="search-form-div">
-            <h3>Search User By username</h3>
+            <h3>Search User By Username <i class="fas fa-search"></i></h3>
             <input
                 type="text"
                 placeholder="Search By Username"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            {filteredUser}
+            <div className="search-card-main-div">
+                {filteredUser}
+            </div>    
         </div>
     )
 }

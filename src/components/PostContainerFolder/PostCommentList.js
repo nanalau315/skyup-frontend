@@ -41,7 +41,6 @@ function PostCommentList({postId, postComments, setPostComments,  currentUser}){
 
     return (
         <div className="post-comment-list-div">
-            <h3>Post Comment List</h3>
             {commentCard}
             <PostNewCommentForm
                 currentUser={currentUser}

@@ -27,10 +27,9 @@ function PostNewCommentForm({currentUser, postId, addComment}){
 
     return(
         <div className="post-new-comment-form-div">
-            <h3>Post New Comment Form</h3>
             <form onSubmit={handleSubmit}>
                 <input className="comment-input" type="text" name="comment" value={comment} onChange={(e)=>setComment(e.target.value)} placeholder={"Leave a Comment as " +  currentUser.username} required/>
-                    <button type="submit">Create Comment</button>
+                    <button type="submit"><i class="fas fa-plus"></i></button>
             </form>
         </div>
     )
