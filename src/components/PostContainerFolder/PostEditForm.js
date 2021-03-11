@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-function PostEditForm({currentUser, post, editPost, deletePost}){
+function PostEditForm({currentUser, post, editPost, deletePost, showEditPostForm, setShowEditPostForm}){
     const API = "http://localhost:3001/"
     const [newContent, setNewContent] = useState(post.content)
 
@@ -14,6 +14,7 @@ function PostEditForm({currentUser, post, editPost, deletePost}){
             .then(r => r.json())
             .then(updatedPost => {
                 editPost(updatedPost)
+                setShowEditPostForm((showEditPostForm) => !showEditPostForm)
             })
     }
 

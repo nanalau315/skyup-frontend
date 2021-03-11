@@ -62,7 +62,7 @@ function UserPostCard({postId, currentUser, deletePost}){
     
     return(
         <div className="user-post-card-div">
-            {postReportAmount < 5
+            {postReportAmount < 2
                 ? <div>
                     {/* <h1>User Post Card#{userPost.id}</h1> */}
                     <div className="user-post-card-header-div">
@@ -87,24 +87,32 @@ function UserPostCard({postId, currentUser, deletePost}){
                             : null
                         }
                     </div>
-                    {currentUserHonks < 50
-                        ? <button onClick={handleHonk}>Honk!</button>
-                        : "You've honk the maximum amount!"
-                    }
-                    <h4>{userPostHonks} Honk Icon Here</h4>
-                    <h4>{userPost.content}</h4>
-                    <h6>{userPost.created_time} ago</h6>
-                        <UserCommentList
-                            postId={userPost.id} 
-                            userPostComments={userPostComments}
-                            setUserPostComments={setUserPostComments}
-                            currentUser={currentUser}
-                        />
-                        
-                    {userPost.user_id === currentUser.id
-                        ? <button onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>Edit Post Icon</button>
-                        : null
-                    }
+                    <div className="post-card-honk-div">
+                        {currentUserHonks < 50
+                            ? <span onClick={handleHonk}><i class="fas fa-bullhorn">  {userPostHonks}!</i></span>
+                            : "You've honk the maximum amount!"
+                        }
+                    </div>
+                    {/* <h4>{userPostHonks} Honk Icon Here</h4> */}
+                    <div className="post-card-post-content-div">
+                        <h4>{userPost.content}</h4>
+                        <p>{userPost.created_time} ago</p>
+                    </div>
+                    <UserCommentList
+                        postId={userPost.id} 
+                        userPostComments={userPostComments}
+                        setUserPostComments={setUserPostComments}
+                        currentUser={currentUser}
+                    />
+                    <div className="post-card-edit-post-button-div">
+                        {userPost.user_id === currentUser.id
+                            ? <button 
+                                onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>
+                                <i class="far fa-edit"> Edit Post</i>
+                                </button>
+                            : null
+                        }
+                    </div>
                     {showEditPostForm 
                         ? <div>
                             <UserPostEditForm 
@@ -116,12 +124,15 @@ function UserPostCard({postId, currentUser, deletePost}){
                             </div> 
                         : null
                     }
-                    {userPost.user_id !== currentUser.id
-                        ? <button onClick={() => setShowReportList((showReportList) => !showReportList)}>
-                            Reports {postReportAmount}</button>
-                        : null
-                    }
-                    {showReportList 
+                    <div className="post-card-edit-post-button-div">
+                        {userPost.user_id !== currentUser.id
+                            ? <button onClick={() => setShowReportList((showReportList) => !showReportList)}>
+                                <div className="post-card-report-button-div"><i class="fas fa-ban"></i> <p>{postReportAmount}</p></div>
+                            </button>
+                            : null
+                        }
+                    </div>
+                    {showReportList
                         ? <PostReportList
                             postId={userPost.id}
                             reports={userPost.postreports}
@@ -131,7 +142,7 @@ function UserPostCard({postId, currentUser, deletePost}){
                         :null
                     }
                 </div>
-                : "This post has been reported by members of the community too many times so it has been hide!"
+                : <div className="reported-post-div">This post has been reported by members of the community too many times so it has been hide!</div>
             }
         </div>
     )

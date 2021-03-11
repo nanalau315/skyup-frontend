@@ -18,14 +18,16 @@ function NavBar({setCurrentUser, currentUser}){
 
     return(
         <nav className="navbar-div">
-            {/* logo */}
+            <div className="navbar-logo-div">
+                <img className="navbar-logo" src={process.env.PUBLIC_URL + "/default_image/skyup_logo.png"} alt="spreddit" onClick={handleLogoClick}/>
+            </div>
             <div className="narbar-right">
                 {currentUser ? 
                     <div className="narbar-right-icon-div">
-                        <NavLink to="/" exact><i class="fas fa-home"></i></NavLink>
-                        <NavLink to="/search" exact><i class="fas fa-search"></i></NavLink>
-                        <NavLink to="/posts" exact><i class="fas fa-stream"></i></NavLink>
-                        <NavLink to="/" exact onClick={handleLogOut}><i class="fas fa-sign-out-alt"></i></NavLink>
+                        <NavLink to="/" exact><i className="fas fa-home"></i></NavLink>
+                        <NavLink to="/search" exact><i className="fas fa-search"></i></NavLink>
+                        <NavLink to="/posts" exact><i className="fas fa-stream"></i></NavLink>
+                        <NavLink to="/" exact onClick={handleLogOut}><i className="fas fa-sign-out-alt"></i></NavLink>
                         <NavLink to={`/user/${currentUser.id}`} 
                             exact>
                                 {currentUser.image_url
@@ -43,7 +45,7 @@ function NavBar({setCurrentUser, currentUser}){
                     </div>
                 :
                 <div className="narbar-right-icon-div">
-                    <NavLink to="/auth" exact><i class="fas fa-sign-in-alt"></i>/<i class="fas fa-user-plus"></i></NavLink>
+                    <NavLink to="/auth" exact><i className="fas fa-sign-in-alt"></i>/<i className="fas fa-user-plus"></i></NavLink>
                 </div>
             }
             </div>

@@ -87,10 +87,12 @@ function PostCard({postId, currentUser, deletePost}){
                             : null
                         }
                     </div>
-                    {currentUserHonks < 50 
-                        ? <span onClick={handleHonk}><i class="fas fa-bullhorn">  {postHonks}!</i></span>
-                        : "You've honk the maximum amount!"
-                    }
+                    <div className="post-card-honk-div">
+                        {currentUserHonks < 50 
+                            ? <span onClick={handleHonk}><i class="fas fa-bullhorn">  {postHonks}!</i></span>
+                            : "You've honk the maximum amount of 50 times!!"
+                        }
+                    </div>
                     {/* <h4>{postHonks} (Honk Icon Here)</h4> */}
                     <div className="post-card-post-content-div">
                         <h4>{postCard.content}</h4>
@@ -104,7 +106,10 @@ function PostCard({postId, currentUser, deletePost}){
                         />
                     <div className="post-card-edit-post-button-div">
                         {postCard.user_id === currentUser.id 
-                            ? <button onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}><i class="far fa-edit"> Edit Post</i></button>
+                            ? <button 
+                                onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>
+                                <i class="far fa-edit"> Edit Post</i>
+                            </button>
                             : null
                         }
                     </div>
@@ -115,6 +120,8 @@ function PostCard({postId, currentUser, deletePost}){
                                 editPost={editPost}
                                 currentUser={currentUser}
                                 deletePost={deletePost}
+                                showEditPostForm={showEditPostForm}
+                                setShowEditPostForm={setShowEditPostForm}
                                 />
                             </div> 
                         : null
@@ -139,7 +146,7 @@ function PostCard({postId, currentUser, deletePost}){
                     : null
                     }
                     </div>
-                : "This post has been reported by members of the community too many times so it has been hide!"
+                : <div className="reported-post-div">This post has been reported by members of the community too many times so it has been hide!</div>
             }
         </div>
     )

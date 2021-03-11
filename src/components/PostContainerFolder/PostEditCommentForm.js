@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function PostEditCommentForm({comment, updateComment, deleteComment}){
+function PostEditCommentForm({comment, updateComment, deleteComment, setShowEditCommentForm, showEditCommentForm}){
     const API = "http://localhost:3001/"
     const [newComment, setNewComment] = useState(comment.comment)
     
@@ -16,6 +16,7 @@ function PostEditCommentForm({comment, updateComment, deleteComment}){
                 updateComment(updatedCommentObj)
             })
         setNewComment("")
+        setShowEditCommentForm((showEditCommentForm) => !showEditCommentForm)
     }
 
     function handleDelete(){
@@ -30,10 +31,19 @@ function PostEditCommentForm({comment, updateComment, deleteComment}){
             {/* <h3>Post Edit Comment Form</h3> */}
             <div className="post-edit-comment-form">
                 <form onSubmit={handleSubmit}>
-                    <input type="text" name="comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)} placeholder={comment.comment} required/>
-                    <button type="submit"><i class="fas fa-check"></i></button>
+                    <input 
+                        type="text" 
+                        name="comment" 
+                        value={newComment} 
+                        onChange={(e)=>setNewComment(e.target.value)} 
+                        placeholder={comment.comment} 
+                        required
+                    />
+                    <button type="submit">
+                        <i class="fas fa-check"></i>
+                    </button>
                 </form>
-                    <button onClick={handleDelete}><i class="far fa-trash-alt"></i></button>
+                <button onClick={handleDelete}><i class="far fa-trash-alt"></i></button>
             </div>
         </div>
     )

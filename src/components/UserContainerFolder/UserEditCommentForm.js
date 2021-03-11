@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function UserEditCommentForm({comment, updateComment, deleteComment}){
+function UserEditCommentForm({comment, updateComment, deleteComment, setShowEditCommentForm, showEditCommentForm}){
     const API = "http://localhost:3001/"
     const [newComment, setNewComment] = useState("")
 
@@ -17,6 +17,7 @@ function UserEditCommentForm({comment, updateComment, deleteComment}){
                 updateComment(updatedCommentObj)
             })
         setNewComment("")
+        setShowEditCommentForm((showEditCommentForm) => !showEditCommentForm)
     }
 
     function handleDelete(){
@@ -27,13 +28,24 @@ function UserEditCommentForm({comment, updateComment, deleteComment}){
     }
 
     return(
-        <div className="user-edit-comment-form-div">
-            <h3>User Edit Comment Form</h3>
-            <form className="usereditcommentform" onSubmit={handleSubmit}>
-                <input className="comment-input" type="text" name="comment" value={newComment} onChange={(e)=>setNewComment(e.target.value)} placeholder={comment.comment} required/>
-                <button type="submit">Update Comment</button>
-            </form>
-                <button onClick={handleDelete}>Delete Comment</button>
+        <div className="post-edit-comment-form-div">
+            {/* <h3>User Edit Comment Form</h3> */}
+            <div className="post-edit-comment-form">
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        type="text"
+                        name="comment" 
+                        value={newComment} 
+                        onChange={(e)=>setNewComment(e.target.value)} 
+                        placeholder={comment.comment} 
+                        required
+                    />
+                    <button type="submit">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </form>
+                <button onClick={handleDelete}><i class="far fa-trash-alt"></i></button>
+            </div>
         </div>
     )
 }

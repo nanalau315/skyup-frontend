@@ -36,7 +36,7 @@ function UserPostList({currentUser, user}){
 
     return(
         <div className="user-post-list-div">
-            <h3>{userPosts.length} Posts From This User</h3>
+            <h4>{userPosts.length} Posts From This User</h4>
             {userPostsArr}
         </div>
     )

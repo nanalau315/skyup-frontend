@@ -22,20 +22,33 @@ code {
   width: 100%;
   overflow: hidden;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   font-size: 4vh;
+  /* border: 5px solid black; */
+}
+
+.navbar-logo-div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+  padding: 0 0 0 1.5vw;
+}
+
+.navbar-logo-div img {
+  height: 100%;
+  /* border: 5px solid black; */
 }
 
 .navbar-right {
+  height: 30%;
+  border: 5px solid black;
   
 }
 
-
 .narbar-right-icon-div{
-  /* background-color: rgb(38, 119, 156); */
-  /* height: 30%; */
-  /* flex-wrap: wrap; */
   display: flex;
   align-items: center;
 }
@@ -43,27 +56,110 @@ code {
 .narbar-right-icon-div a {
   margin: 0;
   margin: 0 2vh;
-  /* padding: 1vh 0; */
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.801);
+  color: rgba(255, 255, 255, 0.945);
 }
 
 .narbar-right-icon-div img{
-  height: 2.5vw;
-  width: 2.5vw;
+  height: 4vh;
+  /* width: 4vh; */
   /* margin: 0 4px; */
   padding: 0;
   border-radius: 50%;
-  border: 0.2vw solid rgba(255, 255, 255, 0.801);
+  border: 0.2vw solid rgba(255, 255, 255, 0.945);
+}
+
+.auth-container-div {
+  margin-top: 15vh;
+}
+
+.login-form-div {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-form-div h1 {
+  margin: 0;
+  margin: 2vh 0;
+}
+
+.login-form-div input {
+  width: 40%;
+  padding: 1vh 5vh;
+  margin-bottom: 1.5vh;
+  margin-left: 2vw;
+  border: none;
+  border-bottom: 0.2vh solid rgba(38, 119, 156, 0.753);
+  border-radius: 4px;
+  color: rgba(38, 119, 156, 0.753);
+  outline: none;
+  font-size: 3vh;
+}
+
+.login-form-div button {
+  border: none;
+  background-color: white;
+  color: rgba(38, 119, 156, 0.753);
+  outline: none;
+  margin: 1vh;
+  font-size: 2.5vh;
+}
+
+.signup-form-div {
+  width: 30%;
+  margin: 5vh auto;
+  text-align: center;
+  /* border: 5px solid black; */
+}
+
+.signup-form-div h1 {
+  margin: 0;
+  margin: 2vh 0;
+}
+
+.signup-form-div input {
+  width: 40%;
+  padding: 1vh 5vh;
+  margin-bottom: 1.5vh;
+  margin-left: 2vw;
+  border: none;
+  border-bottom: 0.2vh solid rgba(38, 119, 156, 0.753);
+  border-radius: 4px;
+  color: rgba(38, 119, 156, 0.753);
+  outline: none;
+}
+
+#signup-file-input {
+  padding: 1vh 10vh;
+}
+
+.signup-form-div button {
+  border: none;
+  background-color: white;
+  color: rgba(38, 119, 156, 0.753);
+  outline: none;
+  margin: 1vh;
+  font-size: 2.5vh;
 }
 
 .home-div {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
   margin-top: 15vh;
 }
 
 .home-div h1 {
   margin: 0;
-  font-size: 2vh;
+  font-size: 4vh;
+  margin: 2vh ;
+}
+
+.home-div a {
+  text-decoration: none;
+  color: rgba(38, 119, 156, 0.753);
+
 }
 
 .search-form-div {
@@ -113,11 +209,20 @@ code {
   align-items: center;
 }
 
+.search-card-user-image-div {
+  width: 20%;
+  /* border: 5px solid black; */
+}
+
 .search-card-div img{
   height: 8vh;
   width: auto;
   margin: 1vh;
   border-radius: 50%;
+}
+
+.search-card-div span {
+  margin-left: 2vw;
 }
 
 .search-card-username {
@@ -153,16 +258,18 @@ code {
   
 }
 
-.post-list-div i {
+/* .post-list-div i {
   float: right;
-}
+} */
 
 .post-card-div {
   text-align: center;
 }
 
-.post-card-div i {
+.post-card-honk-div i {
   font-size: 4vh;
+  float: right;
+  margin-top: 2vh;
 }
 
 .post-card-author-header-div {
@@ -177,6 +284,7 @@ code {
   width: 7vh;
   margin: 1vh;
   border-radius: 50%;
+  border: 0.1vh solid rgba(38, 119, 156, 0.753);
 }
 
 .post-card-author-header-div h4 {
@@ -233,6 +341,7 @@ code {
   width: auto;
   margin: 5px 5px;
   border-radius: 50%;
+  border: 0.1vh solid rgba(38, 119, 156, 0.753);
 }
 
 .post-comment-card-comment-div h4 {
@@ -256,6 +365,7 @@ code {
   justify-content: center;
   align-items: center;
   color: rgba(38, 119, 156, 0.753);
+  /* margin-bottom: 1.5vh; */
 }
 
 .post-comment-card-edit-div p {
@@ -269,7 +379,8 @@ code {
 }
 
 .post-edit-comment-form-div {
-  
+  /* border: 5px solid black; */
+  margin-top: 2vh;
 }
 
 .post-edit-comment-form-div input {
@@ -290,12 +401,18 @@ code {
 
 .post-edit-comment-form i {
   font-size: 2vh;
+  color: rgba(38, 119, 156, 0.753);
 }
 
 .post-edit-comment-form button {
   border: none;
   background-color: white;
   outline: none;
+  color: rgba(38, 119, 156, 0.753);
+}
+
+.post-new-comment-form-div{
+  
 }
 
 .post-new-comment-form-div input {
@@ -322,6 +439,7 @@ code {
   border: none;
   background-color: white;
   outline: none;
+  color: rgba(38, 119, 156, 0.753);
 }
 
 .edit-post-form-div {
@@ -334,11 +452,12 @@ code {
   border: none;
   background-color: white;
   outline: none;
+  color: rgba(38, 119, 156, 0.753);
 }
 
 .post-card-edit-post-button-div button i {
   font-size: 2.5vh;
-
+  color: rgba(38, 119, 156, 0.753);
 }
 
 .edit-post-form-div button {
@@ -448,50 +567,117 @@ code {
   font-size: 2.5vh;
 }
 
+.reported-post-div{
+  width: 80%;
+  margin: 3vh auto;
+  padding: 4vh;
+  border: 0.1vh solid red;
+}
+
 /****************************************** user container */
 .user-container-div{
   width: 80%;
   margin: 0 auto;
   margin-top: 15vh;
+  color: rgba(38, 119, 156, 0.753);
 }
 
 .user-container-user-header-div {
   display: flex;
   height: 25vh;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  /* border: 5px solid rgba(38, 119, 156, 0.753); */
+  /* width: 80%; */
 }
 
-.user-container-user-header-div img{
-  height: 70%;
+.user-container-user-image-name-div{
+  /* border: 5px solid rgba(38, 119, 156, 0.753); */
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 25vh;
+  width: 85%;
+}
+
+.user-container-user-image-name-div img{
+  height: 20vh;
   /* width: 50%; */
   width: auto;
   margin: 5px 5px;
-  border-radius: 50%
+  border-radius: 50%;
+  border: 1vh solid rgba(38, 119, 156, 0.671);
 }
 
 .user-container-user-header-div h1 {
   margin: 0;
-  font-size: 12vh;
+  font-size: 10vh;
+  margin-left: 2vw;
+  color: rgba(38, 119, 156, 0.671);
+}
 
+.user-follow-button button {
+  border: 0.1vh solid rgba(38, 119, 156, 0.753);
+  border-radius: 3vh;
+  background-color: white;
+  outline: none;
+  color: rgba(38, 119, 156, 0.753);
+  font-size: 3vh;
+  padding: 0.9vh 2vh;
+}
+
+.user-container-choice-div {
+  /* border: 5px solid black; */
+  height: 4vh;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-container-choice-div a {
+  text-decoration: none;
+  color: rgba(38, 119, 156, 0.753);
+  font-size: 2.5vh;
+}
+
+.user-post-list-div {
+  text-align: center;
+  border-top: 0.1vh solid rgba(38, 119, 156, 0.753);
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 2vh;
 }
 
 .user-post-card-div{
   text-align: center;
+  /* border: 5px solid black; */
 }
 
 .user-post-card-header-div {
-  display:flex;
+  height: 9vh;
+  display: flex;
+  align-items: center;
+  font-size: 3vh;
+  border-bottom: 0.5vh solid rgba(38, 119, 156, 0.507);
 }
 
 .user-post-card-header-div img {
-  height: 50px;
-  width: auto;
+  height: 6.5vh;
+  /* width: auto; */
   margin: 5px 5px;
+  border-radius: 50%;
+  border: 0.1vh solid rgba(38, 119, 156, 0.753);
+}
+
+.user-post-card-header-div h4 {
+  margin-left: 0.7vh;
 }
 
 .user-post-card-post-img-div img{
-  width: 80vw;
+  width: 100%;
+  margin-top: 1vh;
 }
 
 .user-comment-list-div {
@@ -517,4 +703,71 @@ code {
 .user-comment-card-edit-div h6 {
   margin: 0;
   padding: 0;
+}
+
+.user-new-comment-form-div {
+  margin-top: 2vh;
+}
+
+.user-new-comment-form-div input {
+  width: 40%;
+  padding: 1vh 1vh;
+  border: none;
+  border-bottom: 0.2vh solid rgba(38, 119, 156, 0.753);
+  border-radius: 4px;
+  color: rgba(38, 119, 156, 0.753);
+  outline: none;
+  margin-bottom: 1vh;
+}
+
+.user-new-comment-form-div input::placeholder {
+  color: rgba(38, 119, 156, 0.753);
+  font-size: 2vh;
+}
+
+.user-new-comment-form-div i {
+  font-size: 2vh;
+}
+
+.user-new-comment-form-div button {
+  border: none;
+  background-color: white;
+  outline: none;
+  color: rgba(38, 119, 156, 0.753);
+}
+
+.user-following-list-div{
+  text-align: center;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 15vh;
+}
+
+.user-followers-list-div {
+  text-align: center;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 15vh;
+}
+
+.user-follow-card-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 1vh;
+  border: 5px solid black;
+}
+
+.user-follow-card-div img {
+  height: ;
+}
+
+.user-new-post-form-div {
+  margin-top: 15vh;
+}
+
+.user-update-form-div{
+  margin-top: 15vh;
 }

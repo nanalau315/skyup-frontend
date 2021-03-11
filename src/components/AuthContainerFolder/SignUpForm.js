@@ -65,6 +65,7 @@ function SignUpForm({ setCurrentUser }) {
                 />
                 <label htmlFor="image">Choose an image</label>
                 <input 
+                    id="signup-file-input"
                     type="file" 
                     name="userImage"
                     accept="image/png, image/jpeg, image/jpg" 
@@ -74,7 +75,7 @@ function SignUpForm({ setCurrentUser }) {
                 {errors.map((error) => {
                 return <p key={error}>{error}</p>;
                 })}
-                <button type="submit">Sign Up!</button> 
+                <button type="submit">Sign Up</button> 
             </form>
         </div>
     );

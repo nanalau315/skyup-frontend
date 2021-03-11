@@ -50,10 +50,10 @@ function UserFolloweeList({currentUser}){
 
     return(
         <div className="user-following-list-div">
-            <h3>User Followees List</h3>
+            <h2>User Following List</h2>
             {userFollowees.length > 0
                 ? userFollowees
-                : "You havent followed anyone yet!"
+                : "You haven't followed anyone yet!"
             }
         </div>
     )

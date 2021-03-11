@@ -53,7 +53,7 @@ function UserFollowersList({currentUser}){
 
     return(
         <div className="user-followers-list-div">
-            <h3>User Followers List</h3>
+            <h2>User Followers List</h2>
             {userFollowers.length > 0
                 ? userFollowers
                 : "You don't have any followers yet!"

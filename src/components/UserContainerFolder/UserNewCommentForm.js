@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function UserNewCommentForm ({currentUser, postId, addComment}){
+function UserNewCommentForm({currentUser, postId, addComment}){
     const API = "http://localhost:3001/"
     const [comment, setComment] = useState("")
 
@@ -26,11 +26,18 @@ function UserNewCommentForm ({currentUser, postId, addComment}){
     }
 
     return(
-        <div className="usernewcommentform-div">
-            <h3>User New Comment Form</h3>
+        <div className="user-new-comment-form-div">
             <form onSubmit={handleSubmit}>
-                <input className="comment-input" type="text" name="comment" value={comment} onChange={(e)=>setComment(e.target.value)} placeholder={"Leave a Comment as " +  currentUser.username} required/>
-                    <button type="submit">Create Comment</button>
+                <input 
+                    className="comment-input" 
+                    type="text" 
+                    name="comment" 
+                    value={comment} 
+                    onChange={(e)=>setComment(e.target.value)} 
+                    placeholder={"Leave a Comment as " +  currentUser.username} 
+                    required
+                />
+                <button type="submit"><i class="fas fa-plus"></i></button>
             </form>
         </div>
     )

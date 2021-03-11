@@ -5,9 +5,9 @@ function UserCommentCard({comment, currentUser, updateComment, deleteComment}){
     const [showEditCommentForm, setShowEditCommentForm] = useState(false)
     
     return(
-        <div className="user-comment-card-div">
+        <div className="post-comment-card-div">
             {/* <h3>User Comment Card #{comment.id}</h3> */}
-            <div className="user-comment-card-comment-div">
+            <div className="post-comment-card-comment-div">
                 {comment.author_image_url
                     ? <img 
                         src={comment.author_image_url}
@@ -18,30 +18,32 @@ function UserCommentCard({comment, currentUser, updateComment, deleteComment}){
                         alt={comment.author}
                     />
                 }
-                <p>{comment.author} {comment.comment}</p>
+                <h4>{comment.author}</h4>
+                <div className="post-comment-card-comment"><p>{comment.comment}</p></div>
             </div>
-            <div className="user-comment-card-edit-div">
-                <h6>{comment.created_time} ago</h6>
-                {comment.user_id === currentUser.id ? 
-                    <button onClick={()=> setShowEditCommentForm(showEditCommentForm => !showEditCommentForm)}>Edit Comment Icon</button> 
+            <div className="post-comment-card-edit-div">
+                <p>{comment.created_time} ago</p>
+                {comment.user_id === currentUser.id
+                    ? <span 
+                        onClick={()=> setShowEditCommentForm(showEditCommentForm => !showEditCommentForm)}>
+                        <i class="far fa-edit"></i>
+                    </span> 
                     : null
                 }
             </div>
-            {showEditCommentForm ? 
-                <div>
+            {showEditCommentForm
+                ? <div>
                     <UserEditCommentForm
                         comment={comment}
                         updateComment={updateComment}
                         deleteComment={deleteComment}
+                        setShowEditCommentForm={setShowEditCommentForm}
+                        showEditCommentForm={showEditCommentForm}
                     />
                 </div>
-            : null
+                : null
             }
         </div>
     )
 }
 export default UserCommentCard;
-
-// console.log(comment)
-// console.log(comment.comment)
-// console.log(comment.author)

@@ -23,8 +23,11 @@ function PostCommentCard({comment, currentUser, updateComment, deleteComment}){
             </div>
             <div className="post-comment-card-edit-div">
                 <p>{comment.created_time} ago</p>
-                {comment.user_id === currentUser.id ? 
-                    <span onClick={()=> setShowEditCommentForm(showEditCommentForm => !showEditCommentForm)}><i class="far fa-edit"></i></span> 
+                {comment.user_id === currentUser.id
+                    ? <span 
+                        onClick={()=> setShowEditCommentForm(showEditCommentForm => !showEditCommentForm)}>
+                        <i class="far fa-edit"></i>
+                    </span> 
                     : null
                 }
             </div>
@@ -34,12 +37,13 @@ function PostCommentCard({comment, currentUser, updateComment, deleteComment}){
                         comment={comment}
                         updateComment={updateComment}
                         deleteComment={deleteComment}
+                        setShowEditCommentForm={setShowEditCommentForm}
+                        showEditCommentForm={showEditCommentForm}
                     />
                 </div>
                 : null
             }
         </div>
     )
-
 }
 export default PostCommentCard;

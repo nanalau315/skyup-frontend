@@ -160,31 +160,36 @@ function UserContainer({currentUser, setCurrentUser}){
                 return <p key={error}>{error}</p>;
             })}
             <div className="user-container-user-header-div">
-                {user.image_url
-                    ? <img 
-                        src={user.image_url}
-                        alt={user.username}
+                <div className="user-container-user-image-name-div">
+                    {user.image_url
+                        ? <img 
+                            src={user.image_url}
+                            alt={user.username}
+                            />
+                        : <img 
+                            src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                            alt={user.username}
                         />
-                    : <img 
-                        src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
-                        alt={user.username}
-                    />
-                }
-                <h1>{user.username}</h1>
-                {user.id !== currentUser.id
-                    ? (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Unfollow!" : "Follow!"}</button>)
+                    }
+                    <h1>{user.username}</h1>
+                </div>
+                <div className="user-follow-button">
+                    {user.id !== currentUser.id
+                        ? (<button onClick={() => handleFollow(user.id)}>{isFollowed ? "Unfollow" : "Follow"}</button>)
+                        : null
+                    }
+                </div>
+            </div>
+            <div className="user-container-choice-div">
+                <span><Link to={`/user/${user.id}/followers`}>Followers {currentUserFollowingUsers.length}</Link></span>
+                <span><Link to={`/user/${user.id}/following`}>Following {currentUserFollowedUsers.length}</Link></span>
+                {/* honk! */}
+                {user.id === currentUser.id
+                    ? <span><Link to="/newpost"><i class="fas fa-edit"></i></Link></span>
                     : null
                 }
+                <span><Link to="/update"><i class="fas fa-user-edit"></i></Link></span>
             </div>
-            <button><Link to={`/user/${user.id}/followers`}>Followers {currentUserFollowingUsers.length}</Link></button>
-            <button><Link to={`/user/${user.id}/following`}>Following {currentUserFollowedUsers.length}</Link></button>
-            <button><Link to="/update">Update User Icon!!</Link></button>
-            {/* honk! */}
-            {user.id === currentUser.id
-                ? <button><Link to="/newpost">New Post Icon!!!</Link></button>
-                : null
-            }
-            
             {user.posts.length > 0 
                 ? <UserPostList
                     currentUser={updatedCurrentUser}

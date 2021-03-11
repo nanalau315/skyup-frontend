@@ -41,22 +41,22 @@ function LoginForm({ setCurrentUser }) {
                 <h1>Login</h1>
                 <label>Username</label>
                 <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
+                    type="text"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
                 />
                 <label>Password</label>
                 <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                 />
                 {errors.map((error) => {
                 return <p key={error}>{error}</p>;
                 })}
-                <input type="submit" value="Login!" />
+                <button type="submit" value="Login!">Login</button>
             </form>
         </div>
     );
