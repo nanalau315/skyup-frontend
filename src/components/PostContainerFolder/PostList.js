@@ -56,7 +56,7 @@ function PostList({currentUser}){
         } else {
             return null
         }
-    }).map((post) => {
+    }).reverse().map((post) => {
         return (
             <PostCard
             key={post.id}
@@ -67,7 +67,7 @@ function PostList({currentUser}){
         )
     })
     
-    const globalPostArr = posts.map((post) => {
+    const globalPostArr = posts.reverse().map((post) => {
         return (
             <PostCard
             key={post.id}
@@ -87,7 +87,7 @@ function PostList({currentUser}){
             {!filteredByFollowedUser
                 ? globalPostArr
                 : (currentUserFollowedUsersPostArr.length < 1)
-                ? "None of your friends have posted yet! Tell them to post something!"
+                ? <div className="no-friend-upload-div"><h1>None of your friends have posted yet!</h1> <h1>Tell them to post something!</h1></div>
                 : currentUserFollowedUsersPostArr
             }
         </div>

@@ -19,7 +19,7 @@ function NavBar({setCurrentUser, currentUser}){
     return(
         <nav className="navbar-div">
             <div className="navbar-logo-div">
-                <img className="navbar-logo" src={process.env.PUBLIC_URL + "/default_image/skyup_logo.png"} alt="spreddit" onClick={handleLogoClick}/>
+                <img className="navbar-logo" src={process.env.PUBLIC_URL + "/default_image/skyup_logo.png"} alt="skyup" onClick={handleLogoClick}/>
             </div>
             <div className="narbar-right">
                 {currentUser ? 

@@ -40,7 +40,10 @@ function UserNewPostForm({currentUser}){
     return(
         <div className="user-new-post-form-div">
             <form onSubmit={handleSubmit}>
-                <h3>Do not upload files bigger then 5mb, or else it won't show up in your post! You have been warned! 😈</h3>
+                <h1>Create A New Post</h1>
+                <h4>Do not upload files bigger then 5mb</h4>
+                <h4>or else it won't show up in your post!</h4>
+                <h4>You have been warned! 😈</h4>
                 <input
                     type="text" 
                     name="content" 
@@ -48,6 +51,7 @@ function UserNewPostForm({currentUser}){
                     onChange={(e) => setContent(e.target.value)} 
                     placeholder={"Post Content as " + currentUser.username} required
                 />
+                <br/>
                 <input 
                     type="file" 
                     name="postImage"
@@ -58,7 +62,8 @@ function UserNewPostForm({currentUser}){
                 {/* {errors.map((error) => {
                 return <p key={error}>{error}</p>;
                 })} */}
-                <button type="submit">Create Post</button>
+                <br/>
+                <button type="submit"><i class="fas fa-plus"></i></button>
             </form>
         </div>
     )

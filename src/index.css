@@ -128,6 +128,7 @@ code {
   border-radius: 4px;
   color: rgba(38, 119, 156, 0.753);
   outline: none;
+  font-size: 3vh;
 }
 
 #signup-file-input {
@@ -147,19 +148,42 @@ code {
   text-align: center;
   width: 80%;
   margin: 0 auto;
-  margin-top: 15vh;
+  margin-top: 20vh;
+  /* border: 5px solid black; */
 }
 
 .home-div h1 {
   margin: 0;
   font-size: 4vh;
   margin: 2vh ;
+  background: -webkit-linear-gradient(rgba(38, 119, 156, 0.753), rgba(188, 228, 248, 0.753));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .home-div a {
   text-decoration: none;
   color: rgba(38, 119, 156, 0.753);
 
+}
+
+.home-div a p {
+  font-size: 2vh;
+}
+
+.home-h1-div {
+  margin: 4vh 0;
+}
+
+
+.home-pic-div {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+.home-pic-div img {
+  width: 100%;
 }
 
 .search-form-div {
@@ -215,7 +239,7 @@ code {
 }
 
 .search-card-div img{
-  height: 8vh;
+  height: 12vh;
   width: auto;
   margin: 1vh;
   border-radius: 50%;
@@ -254,8 +278,17 @@ code {
   /* margin-top: 3vh; */
 }
 
-.post-list-div {
-  
+.no-friend-upload-div {
+  /* margin-top: 20vh; */
+  /* width: 80%; */
+  /* border: 5px solid black; */
+  text-align: center;
+  font-size: 2vh;
+  padding-top: 6vh;
+}
+
+.no-friend-upload-div {
+  margin: 0;
 }
 
 /* .post-list-div i {
@@ -264,6 +297,7 @@ code {
 
 .post-card-div {
   text-align: center;
+  padding-bottom: 1vh;
 }
 
 .post-card-honk-div i {
@@ -448,16 +482,31 @@ code {
 
 }
 
+.post-card-edit-post-button-div {
+  /* border: 5px solid black; */
+  padding-top: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1vh;
+
+}
+
 .post-card-edit-post-button-div button {
   border: none;
   background-color: white;
   outline: none;
   color: rgba(38, 119, 156, 0.753);
+  font-size: 2.5vh;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 
 .post-card-edit-post-button-div button i {
-  font-size: 2.5vh;
+  font-size: 2vh;
   color: rgba(38, 119, 156, 0.753);
+  /* margin-bottom: 2vh; */
 }
 
 .edit-post-form-div button {
@@ -479,6 +528,7 @@ code {
   color: rgba(38, 119, 156, 0.753);
   outline: none;
   margin-bottom: 1vh;
+  font-size: 2vh;
 }
 
 .edit-post-form-div input::placeholder {
@@ -493,6 +543,7 @@ code {
 
 .post-card-report-button-div p {
   color: rgba(38, 119, 156, 0.753);
+  margin-left: 1vh;
 }
 
 .post-report-list-div {
@@ -514,6 +565,7 @@ code {
 
 .post-report-card-div button i {
   font-size: 2.5vh;
+  color: rgba(38, 119, 156, 0.753);
 }
 
 .post-report-card-div li {
@@ -522,7 +574,8 @@ code {
   align-items: center;
   margin: 0;
   margin: 2vh 0;
-  color: rgba(38, 119, 156, 0.753);
+  /* color: rgba(38, 119, 156, 0.753); */
+  color: red;
   font-size: 2.5vh;
 }
 
@@ -563,6 +616,11 @@ code {
   align-items: center;
 }
 
+.post-report-form-input-div button {
+  color: rgba(38, 119, 156, 0.753);
+
+}
+
 .post-report-form-report-only-once-div{
   font-size: 2.5vh;
 }
@@ -574,7 +632,7 @@ code {
   border: 0.1vh solid red;
 }
 
-/****************************************** user container */
+/*************************************************** user container */
 .user-container-div{
   width: 80%;
   margin: 0 auto;
@@ -652,6 +710,7 @@ code {
 
 .user-post-card-div{
   text-align: center;
+  padding-bottom: 10vh;
   /* border: 5px solid black; */
 }
 
@@ -761,13 +820,59 @@ code {
 }
 
 .user-follow-card-div img {
-  height: ;
+  /* height: ; */
 }
 
 .user-new-post-form-div {
+  width: 80%;
+  margin: 0 auto;
   margin-top: 15vh;
+  text-align: center;
+  margin-bottom: 5vh;
 }
 
-.user-update-form-div{
-  margin-top: 15vh;
+.user-new-post-form-div h4 {
+  margin: 0;
+  margin: 2vh 0;
+}
+
+.user-new-post-form-div h1 {
+  margin: 0;
+  margin: 4vh 0;
+}
+
+.user-new-post-form-div input {
+  width: 40%;
+  padding: 1vh 2.5vh;
+  margin-bottom: 1.5vh;
+  margin-left: 2vw;
+  border: none;
+  border-bottom: 0.2vh solid rgba(38, 119, 156, 0.753);
+  border-radius: 4px;
+  color: rgba(38, 119, 156, 0.753);
+  outline: none;
+  font-size: 3vh;
+}
+
+.user-new-post-form-div input::placeholder {
+  color: rgba(38, 119, 156, 0.753);
+  font-size: 2vh;
+}
+
+.user-new-post-form-div button {
+  border: none;
+  background-color: white;
+  color: rgba(38, 119, 156, 0.753);
+  outline: none;
+  margin: 1vh;
+  font-size: 2.5vh;
+}
+
+.user-container-no-post-div {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10vh;
+  text-align: center;
+
+  /* border: 5px solid black; */
 }

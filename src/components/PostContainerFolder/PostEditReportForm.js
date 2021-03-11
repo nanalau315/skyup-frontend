@@ -26,8 +26,9 @@ function PostEditReportForm({report, updateReport, deleteReport}){
     }
 
     return(
-        <div className="post-edit-report-form-div">
-            <form className="post-edit-report-form" onSubmit={handleSubmit}>
+        <div className="post-edit-comment-form-div">
+            <div className="post-edit-comment-form">
+            <form onSubmit={handleSubmit}>
                 <input 
                     type="text" 
                     name="reason" 
@@ -36,9 +37,14 @@ function PostEditReportForm({report, updateReport, deleteReport}){
                     placeholder={report.reason} 
                     required
                 />
-                <button type="submit"><i class="fas fa-check"></i></button>
+                <button type="submit">
+                    <i class="fas fa-check"></i>
+                </button>
             </form>
-                <button onClick={handleDelete}>Delete Report!</button>
+            <button onClick={handleDelete}>
+                <i class="far fa-trash-alt"></i>
+            </button>
+            </div>
         </div>
     )
 }

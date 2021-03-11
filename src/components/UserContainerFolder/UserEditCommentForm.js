@@ -44,7 +44,9 @@ function UserEditCommentForm({comment, updateComment, deleteComment, setShowEdit
                         <i class="fas fa-check"></i>
                     </button>
                 </form>
-                <button onClick={handleDelete}><i class="far fa-trash-alt"></i></button>
+                <button onClick={handleDelete}>
+                    <i class="far fa-trash-alt"></i>
+                </button>
             </div>
         </div>
     )

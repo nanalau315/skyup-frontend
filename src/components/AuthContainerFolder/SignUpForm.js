@@ -56,6 +56,7 @@ function SignUpForm({ setCurrentUser }) {
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
+                <br/>
                 <label htmlFor="password">Password</label>
                 <input
                     type="password"
@@ -63,6 +64,7 @@ function SignUpForm({ setCurrentUser }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <br/>
                 <label htmlFor="image">Choose an image</label>
                 <input 
                     id="signup-file-input"
@@ -75,6 +77,7 @@ function SignUpForm({ setCurrentUser }) {
                 {errors.map((error) => {
                 return <p key={error}>{error}</p>;
                 })}
+                <br/>
                 <button type="submit">Sign Up</button> 
             </form>
         </div>

@@ -108,7 +108,7 @@ function UserPostCard({postId, currentUser, deletePost}){
                         {userPost.user_id === currentUser.id
                             ? <button 
                                 onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>
-                                <i class="far fa-edit"> Edit Post</i>
+                                <i class="far fa-edit"></i> Edit Post
                                 </button>
                             : null
                         }
@@ -127,7 +127,7 @@ function UserPostCard({postId, currentUser, deletePost}){
                     <div className="post-card-edit-post-button-div">
                         {userPost.user_id !== currentUser.id
                             ? <button onClick={() => setShowReportList((showReportList) => !showReportList)}>
-                                <div className="post-card-report-button-div"><i class="fas fa-ban"></i> <p>{postReportAmount}</p></div>
+                                <div className="post-card-report-button-div"><i class="fas fa-ban"></i><p>{postReportAmount}</p></div>
                             </button>
                             : null
                         }

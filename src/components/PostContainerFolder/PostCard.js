@@ -62,7 +62,7 @@ function PostCard({postId, currentUser, deletePost}){
     // the url looks like this :  http://localhost:3001/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--efc4772c387f6349f3eea1771c66812ace89046e/cute_cat.jpg
     return(
         <div className="post-card-div">
-            {postReportAmount < 5
+            {postReportAmount < 2
                 ? <div>
                     {/* <h1>Post Card {postCard.id}</h1> */}
                     <div className="post-card-author-header-div">
@@ -108,7 +108,7 @@ function PostCard({postId, currentUser, deletePost}){
                         {postCard.user_id === currentUser.id 
                             ? <button 
                                 onClick={()=> setShowEditPostForm(showEditPostForm => !showEditPostForm)}>
-                                <i class="far fa-edit"> Edit Post</i>
+                                <i class="far fa-edit"></i> Edit Post
                             </button>
                             : null
                         }

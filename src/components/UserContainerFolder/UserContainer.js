@@ -195,7 +195,7 @@ function UserContainer({currentUser, setCurrentUser}){
                     currentUser={updatedCurrentUser}
                     user={user}
                 />
-                : "You Don't Have Any Post Yet!"
+                : <div className="user-container-no-post-div">You Don't Have Any Post Yet!</div>
             }
         </div>
     )

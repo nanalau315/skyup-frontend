@@ -46,6 +46,7 @@ function LoginForm({ setCurrentUser }) {
                     value={formData.username}
                     onChange={handleChange}
                 />
+                <br/>
                 <label>Password</label>
                 <input
                     type="password"
@@ -56,6 +57,7 @@ function LoginForm({ setCurrentUser }) {
                 {errors.map((error) => {
                 return <p key={error}>{error}</p>;
                 })}
+                <br/>
                 <button type="submit" value="Login!">Login</button>
             </form>
         </div>
